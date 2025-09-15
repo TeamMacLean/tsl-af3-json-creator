@@ -9,7 +9,7 @@ author: "Alison MacFadyen"
 date: "09/25/2025"
 ---
 
-# AlphaFold3 .json Creator
+# AlphaFold3 .json Creator{.unnumbered}
 
 Unlike AlphaFold2, AlphaFold3 allows users to analyse more complex protein interactions e.g. with ligands or nucleotides.  As such, we have created a python script to simplify the generation of .json files that are submitted to AlphaFold3 on the HPC.
 

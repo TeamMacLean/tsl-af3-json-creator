@@ -1,8 +1,3 @@
----
-title: "Generation of Protein-Protein .json"
-format: html
----
-
 # Using `af3_json_creator.py` for Protein-Protein Analyses
 
 `af3_json_creator.py` provides the option to generate `.json` files for pairwise analyses or protein multimers.  Default behaviour is to provide pairwise, with protein-multimer comparisons requiring a configuration file.

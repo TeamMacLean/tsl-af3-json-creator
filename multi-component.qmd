@@ -1,8 +1,3 @@
----
-title: "Generation of Multi-Component .json"
-format: html
----
-
 # Using `af3_json_creator.py` for Multi-Component Analyses
 
 A major advantage of using AlphaFold3 over AlphaFold2 is the ability to examine more complex or multi-component associations e.g. proteins with ligands and nucleotides.  To assist in generating `.json` files for these more diverse scenarios the user can use an example `.yaml` configuration file and modify as required.  This configuration file is then used as input to `af3_json_creator.py`

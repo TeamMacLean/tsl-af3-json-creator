@@ -1,8 +1,3 @@
----
-title: "Generation of Protein-Nucleotide .json"
-format: html
----
-
 # Using `af3_json_creator.py` for Protein-Nucleotide Analyses
 
 `af3_json_creator.py` provides the option to generate `.json` files for pairwise analyses or protein multimers with nucleotides e.g. DNA or RNA sequences.  Default behaviour is to provide pairwise, with protein-multimer comparisons requiring a configuration file.

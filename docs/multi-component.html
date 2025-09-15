@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tools for Creating .json files for AlphaFold 3 - 5&nbsp; Generation of Multi-Component .json</title>
+<title>Tools for Creating .json files for AlphaFold 3 - 5&nbsp; Using af3_json_creator.py for Multi-Component Analyses</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./multi-component.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Generation of Multi-Component .json</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./multi-component.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Using `af3_json_creator.py` for Multi-Component Analyses</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -141,25 +141,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./protein-ligand.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Generation of Protein-Ligand .json</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Using <code>af3_json_creator.py</code> for Protein-Ligand Analyses</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./protein-protein.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Generation of Protein-Protein .json</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using <code>af3_json_creator.py</code> for Protein-Protein Analyses</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./protein-nucleotide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Generation of Protein-Nucleotide .json</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Using <code>af3_json_creator.py</code> for Protein-Nucleotide Analyses</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./multi-component.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Generation of Multi-Component .json</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Using <code>af3_json_creator.py</code> for Multi-Component Analyses</span></span></a>
   </div>
 </li>
     </ul>
@@ -172,11 +172,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#using-af3_json_creator.py-for-multi-component-analyses" id="toc-using-af3_json_creator.py-for-multi-component-analyses" class="nav-link active" data-scroll-target="#using-af3_json_creator.py-for-multi-component-analyses"><span class="header-section-number">6</span> Using <code>af3_json_creator.py</code> for Multi-Component Analyses</a>
-  <ul class="collapse">
-  <li><a href="#generating-example-.yaml-configuration-file" id="toc-generating-example-.yaml-configuration-file" class="nav-link" data-scroll-target="#generating-example-.yaml-configuration-file"><span class="header-section-number">6.1</span> Generating example <code>.yaml</code> Configuration File</a></li>
-  <li><a href="#generating-.json-using-example-configuration-.yaml" id="toc-generating-.json-using-example-configuration-.yaml" class="nav-link" data-scroll-target="#generating-.json-using-example-configuration-.yaml"><span class="header-section-number">6.2</span> Generating <code>.json</code> Using Example Configuration <code>.yaml</code></a></li>
-  </ul></li>
+  <li><a href="#generating-example-.yaml-configuration-file" id="toc-generating-example-.yaml-configuration-file" class="nav-link active" data-scroll-target="#generating-example-.yaml-configuration-file"><span class="header-section-number">5.1</span> Generating example <code>.yaml</code> Configuration File</a></li>
+  <li><a href="#generating-.json-using-example-configuration-.yaml" id="toc-generating-.json-using-example-configuration-.yaml" class="nav-link" data-scroll-target="#generating-.json-using-example-configuration-.yaml"><span class="header-section-number">5.2</span> Generating <code>.json</code> Using Example Configuration <code>.yaml</code></a></li>
   </ul>
 </nav>
     </div>
@@ -185,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Generation of Multi-Component .json</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Using <code>af3_json_creator.py</code> for Multi-Component Analyses</span></h1>
 </div>
 
 
@@ -200,11 +197,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="using-af3_json_creator.py-for-multi-component-analyses" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Using <code>af3_json_creator.py</code> for Multi-Component Analyses</h1>
 <p>A major advantage of using AlphaFold3 over AlphaFold2 is the ability to examine more complex or multi-component associations e.g.&nbsp;proteins with ligands and nucleotides. To assist in generating <code>.json</code> files for these more diverse scenarios the user can use an example <code>.yaml</code> configuration file and modify as required. This configuration file is then used as input to <code>af3_json_creator.py</code></p>
-<section id="generating-example-.yaml-configuration-file" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="generating-example-.yaml-configuration-file"><span class="header-section-number">6.1</span> Generating example <code>.yaml</code> Configuration File</h2>
+<section id="generating-example-.yaml-configuration-file" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="generating-example-.yaml-configuration-file"><span class="header-section-number">5.1</span> Generating example <code>.yaml</code> Configuration File</h2>
 <p>There are two example <code>.yaml</code> configuration files available, one which provides the option to add multi-components only e.g.&nbsp;protein, with ligand and nucleotides. The second is more advanced and also provides the option to add modifications to the provided proteins or nucleotides.</p>
 <p>To generate the example <code>.yaml</code> use:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic example</span></span>
@@ -214,8 +209,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> af3_json_creator.py create-example-yaml <span class="at">--advanced</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will generate the example <code>.yaml</code> within the current directory called either <code>example_config.yaml</code> or <code>example_config_advanced.yaml</code>.</p>
 </section>
-<section id="generating-.json-using-example-configuration-.yaml" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="generating-.json-using-example-configuration-.yaml"><span class="header-section-number">6.2</span> Generating <code>.json</code> Using Example Configuration <code>.yaml</code></h2>
+<section id="generating-.json-using-example-configuration-.yaml" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="generating-.json-using-example-configuration-.yaml"><span class="header-section-number">5.2</span> Generating <code>.json</code> Using Example Configuration <code>.yaml</code></h2>
 <p>Once the user has the example config <code>.yaml</code> they need to modify it to provide the name of the input files. For example, if working with the default example config <code>.yaml</code>, then the following lines would need to be modified:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complexes</span><span class="kw">:</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> transcription_complex</span><span class="co"> # modify to the name you want</span></span>
@@ -241,7 +236,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> af3_json_creator.py multi-complex <span class="at">--config</span> complex_config.yaml <span class="at">--output-dir</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -481,7 +475,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./protein-nucleotide.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Generation of Protein-Nucleotide .json</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Using <code>af3_json_creator.py</code> for Protein-Nucleotide Analyses</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
