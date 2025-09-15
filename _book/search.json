@@ -28,13 +28,6 @@
     "text": "Detailed Instructions for .json Creation\nGiven the different complex variations, we have put documentation on using the script for the different scenarios within this blog post. Please use the links below for your specific use case.\nProtein-Ligand Interactions\nProtein-Protein Interactions\nProtein-Nucleotide Interactions\nMulti-Component Interactions"
   },
   {
-    "objectID": "protein-ligand.html",
-    "href": "protein-ligand.html",
-    "title": "2  Generation of Protein-Ligand .json",
-    "section": "",
-    "text": "3 Using af3_json_creator.py for Protein-Ligand Analyses\naf3_json_creator.py provides the option to generate .json files for pairwise analyses or protein multimers with ligands. Default behaviour is to provide pairwise, with protein-multimer comparisons requiring a configuration file."
-  },
-  {
     "objectID": "protein-ligand.html#input-file-formats",
     "href": "protein-ligand.html#input-file-formats",
     "title": "2  Using af3_json_creator.py for Protein-Ligand Analyses",
@@ -54,13 +47,6 @@
     "title": "2  Using af3_json_creator.py for Protein-Ligand Analyses",
     "section": "Protein-Ligand Multimer Combinations",
     "text": "Protein-Ligand Multimer Combinations\nMultimer combinations requires a configuration file. This file allows the user to specify the protein and ligand combinations. It is laid out as:\n# Format: protein_list: group_name\nprotein_1, protein_2: heterodimer\nprotein_1, protein_2, protein_3: trimer\nprotein_1: monomer\nWhere your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. If provided with a single ligand the .json files produced would be:\nheterodimer_ethanol.json\ntrimer_ethanol.json\nmonomer_ethanol.json\nProviding a file with multiple ligands will generate .json files with the specified multimer combinations for each individual ligand.\nTo generate .json files with multimer configuration:\npython af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --config multimer.txt --output-dir output\nFor more complex protein-ligand combinations, please see Multi-Component Interactions."
-  },
-  {
-    "objectID": "protein-protein.html",
-    "href": "protein-protein.html",
-    "title": "3  Generation of Protein-Protein .json",
-    "section": "",
-    "text": "4 Using af3_json_creator.py for Protein-Protein Analyses\naf3_json_creator.py provides the option to generate .json files for pairwise analyses or protein multimers. Default behaviour is to provide pairwise, with protein-multimer comparisons requiring a configuration file."
   },
   {
     "objectID": "protein-protein.html#input-file-formats",
@@ -91,13 +77,6 @@
     "text": "Protein-Protein Multimer Combinations\nMultiple multimer combinations require a configuration file. This file allows the user to specify the protein multimer combinations. It is laid out as:\n# Format: protein_list: group_name\nprotein_1, protein_2: heterodimer\nprotein_1, protein_2, protein_3: trimer\nprotein_1, protein_1: monomer\nWhere your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. The produced .json files would be:\nheterodimer.json\ntrimer.json\nmonomer.json\nTo generate .json files with multimer configuration:\npython af3_json_creator.py protein-protein --fasta1 multi_proteins.fasta --config multimer.txt --output-dir output\nFor more complex protein-protein combinations, please see Multi-Component Interactions."
   },
   {
-    "objectID": "protein-nucleotide.html",
-    "href": "protein-nucleotide.html",
-    "title": "4  Generation of Protein-Nucleotide .json",
-    "section": "",
-    "text": "5 Using af3_json_creator.py for Protein-Nucleotide Analyses\naf3_json_creator.py provides the option to generate .json files for pairwise analyses or protein multimers with nucleotides e.g. DNA or RNA sequences. Default behaviour is to provide pairwise, with protein-multimer comparisons requiring a configuration file."
-  },
-  {
     "objectID": "protein-nucleotide.html#input-file-formats",
     "href": "protein-nucleotide.html#input-file-formats",
     "title": "4  Using af3_json_creator.py for Protein-Nucleotide Analyses",
@@ -117,13 +96,6 @@
     "title": "4  Using af3_json_creator.py for Protein-Nucleotide Analyses",
     "section": "Protein-Nucleotide Multimer Combinations",
     "text": "Protein-Nucleotide Multimer Combinations\nMultimer combinations requires a configuration file. This file allows the user to specify the protein and nucleotide combinations. It is laid out as:\n# Format: protein_list: group_name\nprotein_1, protein_2: heterodimer\nprotein_1, protein_2, protein_3: trimer\nprotein_1: monomer\nWhere your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. If provided with a single DNA or RNA sequence the .json files produced would be:\nheterodimer_nucleotide.json\ntrimer_nucleotide.json\nmonomer_nucleotide.json\nProviding a file with multiple nucleotide sequences will generate .json files with the specified multimer combinations for each individual nucleotide.\nTo generate .json files with multimer configuration for DNA:\npython af3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --config multimer.txt --output-dir output\nOr to generate .json files with multimer configuration for RNA:\npython af3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --config multimer.txt --output-dir output\nFor more complex protein-nucleotide combinations, please see Multi-Component Interactions."
-  },
-  {
-    "objectID": "multi-component.html",
-    "href": "multi-component.html",
-    "title": "5  Generation of Multi-Component .json",
-    "section": "",
-    "text": "6 Using af3_json_creator.py for Multi-Component Analyses\nA major advantage of using AlphaFold3 over AlphaFold2 is the ability to examine more complex or multi-component associations e.g. proteins with ligands and nucleotides. To assist in generating .json files for these more diverse scenarios the user can use an example .yaml configuration file and modify as required. This configuration file is then used as input to af3_json_creator.py"
   },
   {
     "objectID": "multi-component.html#generating-example-.yaml-configuration-file",
