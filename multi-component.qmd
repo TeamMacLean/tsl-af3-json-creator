@@ -2,7 +2,7 @@
 
 A major advantage of using AlphaFold3 over AlphaFold2 is the ability to examine more complex or multi-component associations e.g. proteins with ligands and nucleotides.  To assist in generating `.json` files for these more diverse scenarios the user can use an example `.yaml` configuration file and modify as required.  This configuration file is then used as input to `af3_json_creator.py`
 
-## Generating example `.yaml` Configuration File
+## Generating example `.yaml` Configuration File{.unnumbered}
 
 There are two example `.yaml` configuration files available, one which provides the option to add multi-components only e.g. protein, with ligand and nucleotides.  The second is more advanced and also provides the option to add modifications to the provided proteins or nucleotides.
 
@@ -18,7 +18,7 @@ python af3_json_creator.py create-example-yaml --advanced
 
 This will generate the example `.yaml` within the current directory called either `example_config.yaml` or `example_config_advanced.yaml`.
 
-## Generating `.json` Using Example Configuration `.yaml`
+## Generating `.json` Using Example Configuration `.yaml`{.unnumbered}
 
 Once the user has the example config `.yaml` they need to modify it to provide the name of the input files.  For example, if working with the default example config `.yaml`, then the following lines would need to be modified:
 

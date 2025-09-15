@@ -10,22 +10,22 @@
     "objectID": "index.html#installation",
     "href": "index.html#installation",
     "title": "Tools for Creating .json files for AlphaFold 3",
-    "section": "0.1 Installation",
-    "text": "0.1 Installation\nNo installation as such, you can find them in zip file at /tsl/hpc-scripts/bioinformatics/tsl_af3_tools.zip, copy them locally and use from your own space. Relies on Biopython."
+    "section": "Installation",
+    "text": "Installation\nNo installation as such, you can find them in zip file at /tsl/hpc-scripts/bioinformatics/tsl_af3_tools.zip, copy them locally and use from your own space. Relies on Biopython."
   },
   {
     "objectID": "index.html#dependencies",
     "href": "index.html#dependencies",
     "title": "Tools for Creating .json files for AlphaFold 3",
-    "section": "0.2 Dependencies",
-    "text": "0.2 Dependencies\nThese scripts have some dependencies. The file environment.yaml can be used to create a new mamba environment that has all the required packages and tools. See the RC documentation or the bioinformatics team for help if you don’t know how to set up mamba in your home directory."
+    "section": "Dependencies",
+    "text": "Dependencies\nThese scripts have some dependencies. The file environment.yaml can be used to create a new mamba environment that has all the required packages and tools. See the RC documentation or the bioinformatics team for help if you don’t know how to set up mamba in your home directory."
   },
   {
     "objectID": "index.html#detailed-instructions-for-.json-creation",
     "href": "index.html#detailed-instructions-for-.json-creation",
     "title": "Tools for Creating .json files for AlphaFold 3",
-    "section": "0.3 Detailed Instructions for .json Creation",
-    "text": "0.3 Detailed Instructions for .json Creation\nGiven the different complex variations, we have put documentation on using the script for the different scenarios within this blog post. Please use the links below for your specific use case.\nProtein-Ligand Interactions\nProtein-Protein Interactions\nProtein-Nucleotide Interactions\nMulti-Component Interactions"
+    "section": "Detailed Instructions for .json Creation",
+    "text": "Detailed Instructions for .json Creation\nGiven the different complex variations, we have put documentation on using the script for the different scenarios within this blog post. Please use the links below for your specific use case.\nProtein-Ligand Interactions\nProtein-Protein Interactions\nProtein-Nucleotide Interactions\nMulti-Component Interactions"
   },
   {
     "objectID": "protein-ligand.html",
@@ -38,22 +38,22 @@
     "objectID": "protein-ligand.html#input-file-formats",
     "href": "protein-ligand.html#input-file-formats",
     "title": "2  Using af3_json_creator.py for Protein-Ligand Analyses",
-    "section": "2.1 Input File Formats",
-    "text": "2.1 Input File Formats\n\n2.1.1 FASTA Files\nStandard FASTA format for proteins:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT\n\n\n2.1.2 SMILES Files\nOne SMILES string per line, optionally with tab-separated names:\nCCO ethanol\nc1ccccc1    benzene\nCC(=O)O acetic_acid\nOr simple format (names will be auto-generated):\nCCO\nc1ccccc1\nCC(=O)O\nNote: SMILES information can be obtained from Pubchem https://pubchem.ncbi.nlm.nih.gov/ for many things."
+    "section": "Input File Formats",
+    "text": "Input File Formats\n\nFASTA Files\nStandard FASTA format for proteins:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT\n\n\nSMILES Files\nOne SMILES string per line, optionally with tab-separated names:\nCCO ethanol\nc1ccccc1    benzene\nCC(=O)O acetic_acid\nOr simple format (names will be auto-generated):\nCCO\nc1ccccc1\nCC(=O)O\nNote: SMILES information can be obtained from Pubchem https://pubchem.ncbi.nlm.nih.gov/ for many things."
   },
   {
     "objectID": "protein-ligand.html#pairwise-combinations",
     "href": "protein-ligand.html#pairwise-combinations",
     "title": "2  Using af3_json_creator.py for Protein-Ligand Analyses",
-    "section": "2.2 Pairwise Combinations",
-    "text": "2.2 Pairwise Combinations\nPairwise combinations will take all proteins within a FASTA file and all ligands within a SMILES file and generate corresponding .json files.\nFrom the above example input files 6 .json files would be generated:\nprotein_1_ethanol.json\nprotein_1_benzene.json\nprotein_1_acetic_acid.json\nprotein_2_ethanol.json\nprotein_2_benzene.json\nprotein_2_acetic_acid.json\nTo create pairwise combinations of proteins with ligands:\npython af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --output-dir output"
+    "section": "Pairwise Combinations",
+    "text": "Pairwise Combinations\nPairwise combinations will take all proteins within a FASTA file and all ligands within a SMILES file and generate corresponding .json files.\nFrom the above example input files 6 .json files would be generated:\nprotein_1_ethanol.json\nprotein_1_benzene.json\nprotein_1_acetic_acid.json\nprotein_2_ethanol.json\nprotein_2_benzene.json\nprotein_2_acetic_acid.json\nTo create pairwise combinations of proteins with ligands:\npython af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --output-dir output"
   },
   {
     "objectID": "protein-ligand.html#protein-ligand-multimer-combinations",
     "href": "protein-ligand.html#protein-ligand-multimer-combinations",
     "title": "2  Using af3_json_creator.py for Protein-Ligand Analyses",
-    "section": "2.3 Protein-Ligand Multimer Combinations",
-    "text": "2.3 Protein-Ligand Multimer Combinations\nMultimer combinations requires a configuration file. This file allows the user to specify the protein and ligand combinations. It is laid out as:\n# Format: protein_list: group_name\nprotein_1, protein_2: heterodimer\nprotein_1, protein_2, protein_3: trimer\nprotein_1: monomer\nWhere your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. If provided with a single ligand the .json files produced would be:\nheterodimer_ethanol.json\ntrimer_ethanol.json\nmonomer_ethanol.json\nProviding a file with multiple ligands will generate .json files with the specified multimer combinations for each individual ligand.\nTo generate .json files with multimer configuration:\npython af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --config multimer.txt --output-dir output\nFor more complex protein-ligand combinations, please see Multi-Component Interactions."
+    "section": "Protein-Ligand Multimer Combinations",
+    "text": "Protein-Ligand Multimer Combinations\nMultimer combinations requires a configuration file. This file allows the user to specify the protein and ligand combinations. It is laid out as:\n# Format: protein_list: group_name\nprotein_1, protein_2: heterodimer\nprotein_1, protein_2, protein_3: trimer\nprotein_1: monomer\nWhere your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. If provided with a single ligand the .json files produced would be:\nheterodimer_ethanol.json\ntrimer_ethanol.json\nmonomer_ethanol.json\nProviding a file with multiple ligands will generate .json files with the specified multimer combinations for each individual ligand.\nTo generate .json files with multimer configuration:\npython af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --config multimer.txt --output-dir output\nFor more complex protein-ligand combinations, please see Multi-Component Interactions."
   },
   {
     "objectID": "protein-protein.html",
@@ -66,29 +66,29 @@
     "objectID": "protein-protein.html#input-file-formats",
     "href": "protein-protein.html#input-file-formats",
     "title": "3  Using af3_json_creator.py for Protein-Protein Analyses",
-    "section": "3.1 Input File Formats",
-    "text": "3.1 Input File Formats\n\n3.1.1 FASTA Files\nStandard FASTA format for proteins:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT"
+    "section": "Input File Formats",
+    "text": "Input File Formats\n\nFASTA Files\nStandard FASTA format for proteins:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT"
   },
   {
     "objectID": "protein-protein.html#pairwise-combinations",
     "href": "protein-protein.html#pairwise-combinations",
     "title": "3  Using af3_json_creator.py for Protein-Protein Analyses",
-    "section": "3.2 Pairwise Combinations",
-    "text": "3.2 Pairwise Combinations\nPairwise combinations will take all proteins within the first supplied FASTA file and all proteins within the second supplied FASTA file and generate corresponding .json files.\nTherefore, if the users has a FASTA file containing:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT\nWith a second FASTA file containing:\n&gt;protein_3\nMESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV\n&gt;protein_4\nMKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV\nThey would obtain 4 .json files:\nprotein_1_protein_3.json\nprotein_1_protein_4.json\nprotein_1_protein_3.json\nprotein_2_protein_4.json\nTo create pairwise combinations of single proteins:\npython af3_json_creator.py protein-protein --fasta1 proteins_1.fasta --fasta2 proteins_2.fasta --output-dir output"
+    "section": "Pairwise Combinations",
+    "text": "Pairwise Combinations\nPairwise combinations will take all proteins within the first supplied FASTA file and all proteins within the second supplied FASTA file and generate corresponding .json files.\nTherefore, if the users has a FASTA file containing:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT\nWith a second FASTA file containing:\n&gt;protein_3\nMESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV\n&gt;protein_4\nMKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV\nThey would obtain 4 .json files:\nprotein_1_protein_3.json\nprotein_1_protein_4.json\nprotein_1_protein_3.json\nprotein_2_protein_4.json\nTo create pairwise combinations of single proteins:\npython af3_json_creator.py protein-protein --fasta1 proteins_1.fasta --fasta2 proteins_2.fasta --output-dir output"
   },
   {
     "objectID": "protein-protein.html#single-protein-multimers",
     "href": "protein-protein.html#single-protein-multimers",
     "title": "3  Using af3_json_creator.py for Protein-Protein Analyses",
-    "section": "3.3 Single Protein Multimers",
-    "text": "3.3 Single Protein Multimers\nTo generate a single protein multimer .json then the user provides a a single FASTA file containing all the protein sequences they wish to examine as a multimer:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT\n&gt;protein_3\nMESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV\n&gt;protein_4\nMKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV\nThis would generate a single .json file:\nprotein_1_multimer_4.json\nTo produce a .json file for a single multimer complex:\npython af3_json_creator.py protein-protein --fasta1 multi_proteins.fasta --output-dir output"
+    "section": "Single Protein Multimers",
+    "text": "Single Protein Multimers\nTo generate a single protein multimer .json then the user provides a a single FASTA file containing all the protein sequences they wish to examine as a multimer:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT\n&gt;protein_3\nMESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV\n&gt;protein_4\nMKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV\nThis would generate a single .json file:\nprotein_1_multimer_4.json\nTo produce a .json file for a single multimer complex:\npython af3_json_creator.py protein-protein --fasta1 multi_proteins.fasta --output-dir output"
   },
   {
     "objectID": "protein-protein.html#protein-protein-multimer-combinations",
     "href": "protein-protein.html#protein-protein-multimer-combinations",
     "title": "3  Using af3_json_creator.py for Protein-Protein Analyses",
-    "section": "3.4 Protein-Protein Multimer Combinations",
-    "text": "3.4 Protein-Protein Multimer Combinations\nMultiple multimer combinations require a configuration file. This file allows the user to specify the protein multimer combinations. It is laid out as:\n# Format: protein_list: group_name\nprotein_1, protein_2: heterodimer\nprotein_1, protein_2, protein_3: trimer\nprotein_1, protein_1: monomer\nWhere your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. The produced .json files would be:\nheterodimer.json\ntrimer.json\nmonomer.json\nTo generate .json files with multimer configuration:\npython af3_json_creator.py protein-protein --fasta1 multi_proteins.fasta --config multimer.txt --output-dir output\nFor more complex protein-protein combinations, please see Multi-Component Interactions."
+    "section": "Protein-Protein Multimer Combinations",
+    "text": "Protein-Protein Multimer Combinations\nMultiple multimer combinations require a configuration file. This file allows the user to specify the protein multimer combinations. It is laid out as:\n# Format: protein_list: group_name\nprotein_1, protein_2: heterodimer\nprotein_1, protein_2, protein_3: trimer\nprotein_1, protein_1: monomer\nWhere your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. The produced .json files would be:\nheterodimer.json\ntrimer.json\nmonomer.json\nTo generate .json files with multimer configuration:\npython af3_json_creator.py protein-protein --fasta1 multi_proteins.fasta --config multimer.txt --output-dir output\nFor more complex protein-protein combinations, please see Multi-Component Interactions."
   },
   {
     "objectID": "protein-nucleotide.html",
@@ -101,22 +101,22 @@
     "objectID": "protein-nucleotide.html#input-file-formats",
     "href": "protein-nucleotide.html#input-file-formats",
     "title": "4  Using af3_json_creator.py for Protein-Nucleotide Analyses",
-    "section": "4.1 Input File Formats",
-    "text": "4.1 Input File Formats\n\n4.1.1 FASTA Files\nStandard FASTA format for proteins:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT\nDNA:\n&gt;dna_1\nAGAGCGTTTAAGATCATGCGGGGAGAAGCGTACCACAAATAAAACTAAAAAATAGATTGCAAAAAATATA\n&gt;dna_2\nATAGAGCATTTAAGATTATGCGTGGAGAAGCATATCATAAATGATGCGGTTTTTCAGCCGCTTCATAAAG\nor RNA:\n&gt;rna_1\nAGAGCGUUUAAGAUCAUGCGGGGAGAAGCGUACCACAAAUAAAACUAAAAAAUAGAUUGCAAAAAAUAUA\n&gt;rna_2\nAUAGAGCAUUUAAGAUUAUGCGUGGAGAAGCAUAUCAUAAAUGAUGCGGUUUUUCAGCCGCUUCAUAAAG"
+    "section": "Input File Formats",
+    "text": "Input File Formats\n\nFASTA Files\nStandard FASTA format for proteins:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT\nDNA:\n&gt;dna_1\nAGAGCGTTTAAGATCATGCGGGGAGAAGCGTACCACAAATAAAACTAAAAAATAGATTGCAAAAAATATA\n&gt;dna_2\nATAGAGCATTTAAGATTATGCGTGGAGAAGCATATCATAAATGATGCGGTTTTTCAGCCGCTTCATAAAG\nor RNA:\n&gt;rna_1\nAGAGCGUUUAAGAUCAUGCGGGGAGAAGCGUACCACAAAUAAAACUAAAAAAUAGAUUGCAAAAAAUAUA\n&gt;rna_2\nAUAGAGCAUUUAAGAUUAUGCGUGGAGAAGCAUAUCAUAAAUGAUGCGGUUUUUCAGCCGCUUCAUAAAG"
   },
   {
     "objectID": "protein-nucleotide.html#pairwise-combinations",
     "href": "protein-nucleotide.html#pairwise-combinations",
     "title": "4  Using af3_json_creator.py for Protein-Nucleotide Analyses",
-    "section": "4.2 Pairwise Combinations",
-    "text": "4.2 Pairwise Combinations\nPairwise combinations will take all proteins within a FASTA file and all nucleotide sequences within a FASTA file and generate corresponding .json files.\nFrom the above example input files of proteins with DNA, 4 .json files would be generated:\nprotein_1_dna_1.json\nprotein_1_dna_2.json\nprotein_2_dna_1.json\nprotein_2_dna_2.json\nTo create pairwise combinations of proteins with DNA:\npython af3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --output-dir output\nOr to create pairwise combinations of proteins with DNA:\npython af3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --output-dir output"
+    "section": "Pairwise Combinations",
+    "text": "Pairwise Combinations\nPairwise combinations will take all proteins within a FASTA file and all nucleotide sequences within a FASTA file and generate corresponding .json files.\nFrom the above example input files of proteins with DNA, 4 .json files would be generated:\nprotein_1_dna_1.json\nprotein_1_dna_2.json\nprotein_2_dna_1.json\nprotein_2_dna_2.json\nTo create pairwise combinations of proteins with DNA:\npython af3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --output-dir output\nOr to create pairwise combinations of proteins with DNA:\npython af3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --output-dir output"
   },
   {
     "objectID": "protein-nucleotide.html#protein-nucleotide-multimer-combinations",
     "href": "protein-nucleotide.html#protein-nucleotide-multimer-combinations",
     "title": "4  Using af3_json_creator.py for Protein-Nucleotide Analyses",
-    "section": "4.3 Protein-Nucleotide Multimer Combinations",
-    "text": "4.3 Protein-Nucleotide Multimer Combinations\nMultimer combinations requires a configuration file. This file allows the user to specify the protein and nucleotide combinations. It is laid out as:\n# Format: protein_list: group_name\nprotein_1, protein_2: heterodimer\nprotein_1, protein_2, protein_3: trimer\nprotein_1: monomer\nWhere your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. If provided with a single DNA or RNA sequence the .json files produced would be:\nheterodimer_nucleotide.json\ntrimer_nucleotide.json\nmonomer_nucleotide.json\nProviding a file with multiple nucleotide sequences will generate .json files with the specified multimer combinations for each individual nucleotide.\nTo generate .json files with multimer configuration for DNA:\npython af3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --config multimer.txt --output-dir output\nOr to generate .json files with multimer configuration for RNA:\npython af3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --config multimer.txt --output-dir output\nFor more complex protein-nucleotide combinations, please see Multi-Component Interactions."
+    "section": "Protein-Nucleotide Multimer Combinations",
+    "text": "Protein-Nucleotide Multimer Combinations\nMultimer combinations requires a configuration file. This file allows the user to specify the protein and nucleotide combinations. It is laid out as:\n# Format: protein_list: group_name\nprotein_1, protein_2: heterodimer\nprotein_1, protein_2, protein_3: trimer\nprotein_1: monomer\nWhere your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. If provided with a single DNA or RNA sequence the .json files produced would be:\nheterodimer_nucleotide.json\ntrimer_nucleotide.json\nmonomer_nucleotide.json\nProviding a file with multiple nucleotide sequences will generate .json files with the specified multimer combinations for each individual nucleotide.\nTo generate .json files with multimer configuration for DNA:\npython af3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --config multimer.txt --output-dir output\nOr to generate .json files with multimer configuration for RNA:\npython af3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --config multimer.txt --output-dir output\nFor more complex protein-nucleotide combinations, please see Multi-Component Interactions."
   },
   {
     "objectID": "multi-component.html",
@@ -129,14 +129,14 @@
     "objectID": "multi-component.html#generating-example-.yaml-configuration-file",
     "href": "multi-component.html#generating-example-.yaml-configuration-file",
     "title": "5  Using af3_json_creator.py for Multi-Component Analyses",
-    "section": "5.1 Generating example .yaml Configuration File",
-    "text": "5.1 Generating example .yaml Configuration File\nThere are two example .yaml configuration files available, one which provides the option to add multi-components only e.g. protein, with ligand and nucleotides. The second is more advanced and also provides the option to add modifications to the provided proteins or nucleotides.\nTo generate the example .yaml use:\n# Basic example\npython af3_json_creator.py create-example-yaml\n\n# Advanced example with modifications\npython af3_json_creator.py create-example-yaml --advanced\nThis will generate the example .yaml within the current directory called either example_config.yaml or example_config_advanced.yaml."
+    "section": "Generating example .yaml Configuration File",
+    "text": "Generating example .yaml Configuration File\nThere are two example .yaml configuration files available, one which provides the option to add multi-components only e.g. protein, with ligand and nucleotides. The second is more advanced and also provides the option to add modifications to the provided proteins or nucleotides.\nTo generate the example .yaml use:\n# Basic example\npython af3_json_creator.py create-example-yaml\n\n# Advanced example with modifications\npython af3_json_creator.py create-example-yaml --advanced\nThis will generate the example .yaml within the current directory called either example_config.yaml or example_config_advanced.yaml."
   },
   {
     "objectID": "multi-component.html#generating-.json-using-example-configuration-.yaml",
     "href": "multi-component.html#generating-.json-using-example-configuration-.yaml",
     "title": "5  Using af3_json_creator.py for Multi-Component Analyses",
-    "section": "5.2 Generating .json Using Example Configuration .yaml",
-    "text": "5.2 Generating .json Using Example Configuration .yaml\nOnce the user has the example config .yaml they need to modify it to provide the name of the input files. For example, if working with the default example config .yaml, then the following lines would need to be modified:\ncomplexes:\n  - name: transcription_complex # modify to the name you want\n    components:\n      - type: protein\n        file: transcription_factor.fasta # Provide path to input\n      - type: dna\n        file: promoter.fasta # Provide path to input\n      - type: ligand\n        file: cofactor.smi # Provide path to input\n  \n  - name: enzyme_complex # Delete if not need or copy to add more\n    components:\n      - type: protein\n        file: enzyme1.fasta\n      - type: protein\n        file: enzyme2.fasta\n      - type: ion\n        ccdCodes: '[Mg+2]'\n      - type: ligand\n        file: substrate.smi\nOnce the example config .yaml has been edited for the users specific use case, then it can be provided to af3_json_creator.py as below:\npython af3_json_creator.py multi-complex --config complex_config.yaml --output-dir output"
+    "section": "5.1 Generating .json Using Example Configuration .yaml",
+    "text": "5.1 Generating .json Using Example Configuration .yaml\nOnce the user has the example config .yaml they need to modify it to provide the name of the input files. For example, if working with the default example config .yaml, then the following lines would need to be modified:\ncomplexes:\n  - name: transcription_complex # modify to the name you want\n    components:\n      - type: protein\n        file: transcription_factor.fasta # Provide path to input\n      - type: dna\n        file: promoter.fasta # Provide path to input\n      - type: ligand\n        file: cofactor.smi # Provide path to input\n  \n  - name: enzyme_complex # Delete if not need or copy to add more\n    components:\n      - type: protein\n        file: enzyme1.fasta\n      - type: protein\n        file: enzyme2.fasta\n      - type: ion\n        ccdCodes: '[Mg+2]'\n      - type: ligand\n        file: substrate.smi\nOnce the example config .yaml has been edited for the users specific use case, then it can be provided to af3_json_creator.py as below:\npython af3_json_creator.py multi-complex --config complex_config.yaml --output-dir output"
   }
 ]

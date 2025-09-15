@@ -173,13 +173,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#input-file-formats" id="toc-input-file-formats" class="nav-link active" data-scroll-target="#input-file-formats"><span class="header-section-number">2.1</span> Input File Formats</a>
+  <li><a href="#input-file-formats" id="toc-input-file-formats" class="nav-link active" data-scroll-target="#input-file-formats">Input File Formats</a>
   <ul class="collapse">
-  <li><a href="#fasta-files" id="toc-fasta-files" class="nav-link" data-scroll-target="#fasta-files"><span class="header-section-number">2.1.1</span> FASTA Files</a></li>
-  <li><a href="#smiles-files" id="toc-smiles-files" class="nav-link" data-scroll-target="#smiles-files"><span class="header-section-number">2.1.2</span> SMILES Files</a></li>
+  <li><a href="#fasta-files" id="toc-fasta-files" class="nav-link" data-scroll-target="#fasta-files">FASTA Files</a></li>
+  <li><a href="#smiles-files" id="toc-smiles-files" class="nav-link" data-scroll-target="#smiles-files">SMILES Files</a></li>
   </ul></li>
-  <li><a href="#pairwise-combinations" id="toc-pairwise-combinations" class="nav-link" data-scroll-target="#pairwise-combinations"><span class="header-section-number">2.2</span> Pairwise Combinations</a></li>
-  <li><a href="#protein-ligand-multimer-combinations" id="toc-protein-ligand-multimer-combinations" class="nav-link" data-scroll-target="#protein-ligand-multimer-combinations"><span class="header-section-number">2.3</span> Protein-Ligand Multimer Combinations</a></li>
+  <li><a href="#pairwise-combinations" id="toc-pairwise-combinations" class="nav-link" data-scroll-target="#pairwise-combinations">Pairwise Combinations</a></li>
+  <li><a href="#protein-ligand-multimer-combinations" id="toc-protein-ligand-multimer-combinations" class="nav-link" data-scroll-target="#protein-ligand-multimer-combinations">Protein-Ligand Multimer Combinations</a></li>
   </ul>
 </nav>
     </div>
@@ -204,18 +204,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p><code>af3_json_creator.py</code> provides the option to generate <code>.json</code> files for pairwise analyses or protein multimers with ligands. Default behaviour is to provide pairwise, with protein-multimer comparisons requiring a configuration file.</p>
-<section id="input-file-formats" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="input-file-formats"><span class="header-section-number">2.1</span> Input File Formats</h2>
-<section id="fasta-files" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="fasta-files"><span class="header-section-number">2.1.1</span> FASTA Files</h3>
+<section id="input-file-formats" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="input-file-formats">Input File Formats</h2>
+<section id="fasta-files" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fasta-files">FASTA Files</h3>
 <p>Standard FASTA format for proteins:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_1</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_2</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="smiles-files" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="smiles-files"><span class="header-section-number">2.1.2</span> SMILES Files</h3>
+<section id="smiles-files" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="smiles-files">SMILES Files</h3>
 <p>One SMILES string per line, optionally with tab-separated names:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">CCO</span> ethanol</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">c1ccccc1</span>    benzene</span>
@@ -227,8 +227,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Note</strong>: SMILES information can be obtained from Pubchem <a href="https://pubchem.ncbi.nlm.nih.gov/">https://pubchem.ncbi.nlm.nih.gov/</a> for many things.</p>
 </section>
 </section>
-<section id="pairwise-combinations" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="pairwise-combinations"><span class="header-section-number">2.2</span> Pairwise Combinations</h2>
+<section id="pairwise-combinations" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="pairwise-combinations">Pairwise Combinations</h2>
 <p>Pairwise combinations will take all proteins within a FASTA file and all ligands within a SMILES file and generate corresponding <code>.json</code> files.</p>
 <p>From the above example input files 6 <code>.json</code> files would be generated:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1_ethanol.json</span></span>
@@ -240,8 +240,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To create pairwise combinations of proteins with ligands:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> af3_json_creator.py protein-ligand <span class="at">--fasta</span> proteins.fasta <span class="at">--smiles</span> ligands.smi <span class="at">--output-dir</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="protein-ligand-multimer-combinations" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="protein-ligand-multimer-combinations"><span class="header-section-number">2.3</span> Protein-Ligand Multimer Combinations</h2>
+<section id="protein-ligand-multimer-combinations" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="protein-ligand-multimer-combinations">Protein-Ligand Multimer Combinations</h2>
 <p>Multimer combinations requires a configuration file. This file allows the user to specify the protein and ligand combinations. It is laid out as:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format: protein_list: group_name</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1,</span> protein_2: heterodimer</span>

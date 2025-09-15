@@ -173,13 +173,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#input-file-formats" id="toc-input-file-formats" class="nav-link active" data-scroll-target="#input-file-formats"><span class="header-section-number">3.1</span> Input File Formats</a>
+  <li><a href="#input-file-formats" id="toc-input-file-formats" class="nav-link active" data-scroll-target="#input-file-formats">Input File Formats</a>
   <ul class="collapse">
-  <li><a href="#fasta-files" id="toc-fasta-files" class="nav-link" data-scroll-target="#fasta-files"><span class="header-section-number">3.1.1</span> FASTA Files</a></li>
+  <li><a href="#fasta-files" id="toc-fasta-files" class="nav-link" data-scroll-target="#fasta-files">FASTA Files</a></li>
   </ul></li>
-  <li><a href="#pairwise-combinations" id="toc-pairwise-combinations" class="nav-link" data-scroll-target="#pairwise-combinations"><span class="header-section-number">3.2</span> Pairwise Combinations</a></li>
-  <li><a href="#single-protein-multimers" id="toc-single-protein-multimers" class="nav-link" data-scroll-target="#single-protein-multimers"><span class="header-section-number">3.3</span> Single Protein Multimers</a></li>
-  <li><a href="#protein-protein-multimer-combinations" id="toc-protein-protein-multimer-combinations" class="nav-link" data-scroll-target="#protein-protein-multimer-combinations"><span class="header-section-number">3.4</span> Protein-Protein Multimer Combinations</a></li>
+  <li><a href="#pairwise-combinations" id="toc-pairwise-combinations" class="nav-link" data-scroll-target="#pairwise-combinations">Pairwise Combinations</a></li>
+  <li><a href="#single-protein-multimers" id="toc-single-protein-multimers" class="nav-link" data-scroll-target="#single-protein-multimers">Single Protein Multimers</a></li>
+  <li><a href="#protein-protein-multimer-combinations" id="toc-protein-protein-multimer-combinations" class="nav-link" data-scroll-target="#protein-protein-multimer-combinations">Protein-Protein Multimer Combinations</a></li>
   </ul>
 </nav>
     </div>
@@ -204,10 +204,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p><code>af3_json_creator.py</code> provides the option to generate <code>.json</code> files for pairwise analyses or protein multimers. Default behaviour is to provide pairwise, with protein-multimer comparisons requiring a configuration file.</p>
-<section id="input-file-formats" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="input-file-formats"><span class="header-section-number">3.1</span> Input File Formats</h2>
-<section id="fasta-files" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="fasta-files"><span class="header-section-number">3.1.1</span> FASTA Files</h3>
+<section id="input-file-formats" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="input-file-formats">Input File Formats</h2>
+<section id="fasta-files" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fasta-files">FASTA Files</h3>
 <p>Standard FASTA format for proteins:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_1</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD</span></span>
@@ -215,8 +215,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="pairwise-combinations" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="pairwise-combinations"><span class="header-section-number">3.2</span> Pairwise Combinations</h2>
+<section id="pairwise-combinations" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="pairwise-combinations">Pairwise Combinations</h2>
 <p>Pairwise combinations will take all proteins within the first supplied FASTA file and all proteins within the second supplied FASTA file and generate corresponding <code>.json</code> files.</p>
 <p>Therefore, if the users has a FASTA file containing:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_1</span>
@@ -236,8 +236,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To create pairwise combinations of single proteins:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> af3_json_creator.py protein-protein <span class="at">--fasta1</span> proteins_1.fasta <span class="at">--fasta2</span> proteins_2.fasta <span class="at">--output-dir</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="single-protein-multimers" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="single-protein-multimers"><span class="header-section-number">3.3</span> Single Protein Multimers</h2>
+<section id="single-protein-multimers" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="single-protein-multimers">Single Protein Multimers</h2>
 <p>To generate a single protein multimer <code>.json</code> then the user provides a a single FASTA file containing all the protein sequences they wish to examine as a multimer:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_1</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD</span></span>
@@ -252,8 +252,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To produce a <code>.json</code> file for a single multimer complex:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> af3_json_creator.py protein-protein <span class="at">--fasta1</span> multi_proteins.fasta <span class="at">--output-dir</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="protein-protein-multimer-combinations" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="protein-protein-multimer-combinations"><span class="header-section-number">3.4</span> Protein-Protein Multimer Combinations</h2>
+<section id="protein-protein-multimer-combinations" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="protein-protein-multimer-combinations">Protein-Protein Multimer Combinations</h2>
 <p>Multiple multimer combinations require a configuration file. This file allows the user to specify the protein multimer combinations. It is laid out as:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format: protein_list: group_name</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1,</span> protein_2: heterodimer</span>
