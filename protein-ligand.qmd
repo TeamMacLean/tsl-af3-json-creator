@@ -1,0 +1,91 @@
+---
+title: "Generation of Protein-Ligand .json"
+format: html
+---
+
+# Using `af3_json_creator.py` for Protein-Ligand Analyses
+
+`af3_json_creator.py` provides the option to generate `.json` files for pairwise analyses or protein multimers with ligands.  Default behaviour is to provide pairwise, with protein-multimer comparisons requiring a configuration file.
+
+## Input File Formats
+
+### FASTA Files
+
+Standard FASTA format for proteins:
+
+```bash
+>protein_1
+MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD
+>protein_2
+MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT
+```
+
+### SMILES Files
+
+One SMILES string per line, optionally with tab-separated names:
+
+```bash
+CCO	ethanol
+c1ccccc1	benzene
+CC(=O)O	acetic_acid
+```
+
+Or simple format (names will be auto-generated):
+
+```bash
+CCO
+c1ccccc1
+CC(=O)O
+```
+
+**Note**: SMILES information can be obtained from Pubchem [https://pubchem.ncbi.nlm.nih.gov/](https://pubchem.ncbi.nlm.nih.gov/) for many things.
+
+## Pairwise Combinations
+
+Pairwise combinations will take all proteins within a FASTA file and all ligands within a SMILES file and generate corresponding `.json` files.
+
+From the above example input files 6 `.json` files would be generated:
+
+```bash
+protein_1_ethanol.json
+protein_1_benzene.json
+protein_1_acetic_acid.json
+protein_2_ethanol.json
+protein_2_benzene.json
+protein_2_acetic_acid.json
+```
+
+To create pairwise combinations of proteins with ligands:
+
+```bash
+python af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --output-dir output
+```
+
+## Protein-Ligand Multimer Combinations
+
+Multimer combinations requires a configuration file.  This file allows the user to specify the protein and ligand combinations.  It is laid out as:
+
+```bash
+# Format: protein_list: group_name
+protein_1, protein_2: heterodimer
+protein_1, protein_2, protein_3: trimer
+protein_1: monomer
+```
+
+Where your input FASTA file would have three proteins: protein_1, protein_2 and protein_3.  If provided with a single ligand the `.json` files produced would be:
+
+```bash
+heterodimer_ethanol.json
+trimer_ethanol.json
+monomer_ethanol.json
+```
+
+Providing a file with multiple ligands will generate `.json` files with the specified multimer combinations for each individual ligand.
+
+To generate `.json` files with multimer configuration:
+
+```bash
+python af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --config multimer.txt --output-dir output
+```
+
+For more complex protein-ligand combinations, please see [Multi-Component Interactions](multi-component.qmd).

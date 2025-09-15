@@ -1,0 +1,35 @@
+---
+title: "Tools for Creating .json files for AlphaFold 3"
+categories: 
+  - command line
+  - HPC 
+  - Alpha Fold 
+  - tutorial
+author: "Alison MacFadyen"
+date: "09/25/2025"
+---
+
+# AlphaFold3 .json Creator
+
+Unlike AlphaFold2, AlphaFold3 allows users to analyse more complex protein interactions e.g. with ligands or nucleotides.  As such, we have created a python script to simplify the generation of .json files that are submitted to AlphaFold3 on the HPC.
+
+## Installation
+
+No installation as such, you can find them in zip file at `/tsl/hpc-scripts/bioinformatics/tsl_af3_tools.zip`, copy them locally and use from your own space. Relies on Biopython.
+
+## Dependencies
+
+These scripts have some dependencies. The file `environment.yaml` can be used to create a new `mamba` environment that has all the required packages and tools. See the RC documentation or the bioinformatics team for help if you don't know how to set up `mamba` in your home directory.
+
+
+## Detailed Instructions for .json Creation
+
+Given the different complex variations, we have put documentation on using the script for the different scenarios within this blog post.  Please use the links below for your specific use case.
+
+[Protein-Ligand Interactions](protein-ligand.qmd)
+
+[Protein-Protein Interactions](protein-protein.qmd)
+
+[Protein-Nucleotide Interactions](protein-nucleotide.qmd)
+
+[Multi-Component Interactions](multi-component.qmd)

@@ -1,0 +1,99 @@
+---
+title: "Generation of Protein-Nucleotide .json"
+format: html
+---
+
+# Using `af3_json_creator.py` for Protein-Nucleotide Analyses
+
+`af3_json_creator.py` provides the option to generate `.json` files for pairwise analyses or protein multimers with nucleotides e.g. DNA or RNA sequences.  Default behaviour is to provide pairwise, with protein-multimer comparisons requiring a configuration file.
+
+## Input File Formats
+
+### FASTA Files
+
+Standard FASTA format for proteins:
+
+```bash
+>protein_1
+MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD
+>protein_2
+MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT
+```
+
+DNA:
+
+```bash
+>dna_1
+AGAGCGTTTAAGATCATGCGGGGAGAAGCGTACCACAAATAAAACTAAAAAATAGATTGCAAAAAATATA
+>dna_2
+ATAGAGCATTTAAGATTATGCGTGGAGAAGCATATCATAAATGATGCGGTTTTTCAGCCGCTTCATAAAG
+```
+
+or RNA:
+
+```bash
+>rna_1
+AGAGCGUUUAAGAUCAUGCGGGGAGAAGCGUACCACAAAUAAAACUAAAAAAUAGAUUGCAAAAAAUAUA
+>rna_2
+AUAGAGCAUUUAAGAUUAUGCGUGGAGAAGCAUAUCAUAAAUGAUGCGGUUUUUCAGCCGCUUCAUAAAG
+```
+
+## Pairwise Combinations
+
+Pairwise combinations will take all proteins within a FASTA file and all nucleotide sequences within a FASTA file and generate corresponding `.json` files.
+
+From the above example input files of proteins with DNA, 4 `.json` files would be generated:
+
+```bash
+protein_1_dna_1.json
+protein_1_dna_2.json
+protein_2_dna_1.json
+protein_2_dna_2.json
+```
+
+To create pairwise combinations of proteins with DNA:
+
+```bash
+python af3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --output-dir output
+```
+
+Or to create pairwise combinations of proteins with DNA:
+
+```bash
+python af3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --output-dir output
+```
+
+## Protein-Nucleotide Multimer Combinations
+
+Multimer combinations requires a configuration file.  This file allows the user to specify the protein and nucleotide combinations.  It is laid out as:
+
+```bash
+# Format: protein_list: group_name
+protein_1, protein_2: heterodimer
+protein_1, protein_2, protein_3: trimer
+protein_1: monomer
+```
+
+Where your input FASTA file would have three proteins: protein_1, protein_2 and protein_3.  If provided with a single DNA or RNA sequence the `.json` files produced would be:
+
+```bash
+heterodimer_nucleotide.json
+trimer_nucleotide.json
+monomer_nucleotide.json
+```
+
+Providing a file with multiple nucleotide sequences will generate `.json` files with the specified multimer combinations for each individual nucleotide.
+
+To generate `.json` files with multimer configuration for DNA:
+
+```bash
+python af3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --config multimer.txt --output-dir output
+```
+
+Or to generate `.json` files with multimer configuration for RNA:
+
+```bash
+python af3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --config multimer.txt --output-dir output
+```
+
+For more complex protein-nucleotide combinations, please see [Multi-Component Interactions](multi-component.qmd).

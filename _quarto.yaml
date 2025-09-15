@@ -1,0 +1,22 @@
+project:
+  type: book
+
+book:
+  title: "Tools for Creating .json files for AlphaFold 3"
+  author: "Alison MacFadyen"
+  date: "09/15/2025"
+  chapters:
+    - index.qmd
+    - protein-ligand.qmd
+    - protein-protein.qmd
+    - protein-nucleotide.qmd
+    - multi-component.qmd
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

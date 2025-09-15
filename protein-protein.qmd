@@ -1,0 +1,112 @@
+---
+title: "Generation of Protein-Protein .json"
+format: html
+---
+
+# Using `af3_json_creator.py` for Protein-Protein Analyses
+
+`af3_json_creator.py` provides the option to generate `.json` files for pairwise analyses or protein multimers.  Default behaviour is to provide pairwise, with protein-multimer comparisons requiring a configuration file.
+
+## Input File Formats
+
+### FASTA Files
+
+Standard FASTA format for proteins:
+
+```bash
+>protein_1
+MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD
+>protein_2
+MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT
+```
+
+## Pairwise Combinations
+
+Pairwise combinations will take all proteins within the first supplied FASTA file and all proteins within the second supplied FASTA file and generate corresponding `.json` files.
+
+Therefore, if the users has a FASTA file containing:
+
+```bash
+>protein_1
+MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD
+>protein_2
+MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT
+```
+
+With a second FASTA file containing:
+
+```bash
+>protein_3
+MESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV
+>protein_4
+MKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV
+```
+
+They would obtain 4 `.json` files:
+
+```bash
+protein_1_protein_3.json
+protein_1_protein_4.json
+protein_1_protein_3.json
+protein_2_protein_4.json
+```
+
+To create pairwise combinations of single proteins:
+
+```bash
+python af3_json_creator.py protein-protein --fasta1 proteins_1.fasta --fasta2 proteins_2.fasta --output-dir output
+```
+
+## Single Protein Multimers
+
+To generate a single protein multimer `.json` then the user provides a a single FASTA file containing all the protein sequences they wish to examine as a multimer:
+
+```bash
+>protein_1
+MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD
+>protein_2
+MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT
+>protein_3
+MESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV
+>protein_4
+MKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV
+```
+
+This would generate a single `.json` file:
+
+```bash
+protein_1_multimer_4.json
+```
+
+To produce a `.json` file for a single multimer complex:
+
+```bash
+python af3_json_creator.py protein-protein --fasta1 multi_proteins.fasta --output-dir output
+```
+
+## Protein-Protein Multimer Combinations
+
+Multiple multimer combinations require a configuration file.  This file allows the user to specify the protein multimer combinations.  It is laid out as:
+
+```bash
+# Format: protein_list: group_name
+protein_1, protein_2: heterodimer
+protein_1, protein_2, protein_3: trimer
+protein_1, protein_1: monomer
+```
+
+Where your input FASTA file would have three proteins: protein_1, protein_2 and protein_3.  The produced `.json` files would be:
+
+```bash
+heterodimer.json
+trimer.json
+monomer.json
+```
+
+To generate `.json` files with multimer configuration:
+
+```bash
+python af3_json_creator.py protein-protein --fasta1 multi_proteins.fasta --config multimer.txt --output-dir output
+```
+
+For more complex protein-protein combinations, please see [Multi-Component Interactions](multi-component.qmd).

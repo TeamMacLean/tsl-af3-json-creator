@@ -1,0 +1,57 @@
+---
+title: "Generation of Multi-Component .json"
+format: html
+---
+
+# Using `af3_json_creator.py` for Multi-Component Analyses
+
+A major advantage of using AlphaFold3 over AlphaFold2 is the ability to examine more complex or multi-component associations e.g. proteins with ligands and nucleotides.  To assist in generating `.json` files for these more diverse scenarios the user can use an example `.yaml` configuration file and modify as required.  This configuration file is then used as input to `af3_json_creator.py`
+
+## Generating example `.yaml` Configuration File
+
+There are two example `.yaml` configuration files available, one which provides the option to add multi-components only e.g. protein, with ligand and nucleotides.  The second is more advanced and also provides the option to add modifications to the provided proteins or nucleotides.
+
+To generate the example `.yaml` use:
+
+```bash
+# Basic example
+python af3_json_creator.py create-example-yaml
+
+# Advanced example with modifications
+python af3_json_creator.py create-example-yaml --advanced
+```
+
+This will generate the example `.yaml` within the current directory called either `example_config.yaml` or `example_config_advanced.yaml`.
+
+## Generating `.json` Using Example Configuration `.yaml`
+
+Once the user has the example config `.yaml` they need to modify it to provide the name of the input files.  For example, if working with the default example config `.yaml`, then the following lines would need to be modified:
+
+```yaml
+complexes:
+  - name: transcription_complex # modify to the name you want
+    components:
+      - type: protein
+        file: transcription_factor.fasta # Provide path to input
+      - type: dna
+        file: promoter.fasta # Provide path to input
+      - type: ligand
+        file: cofactor.smi # Provide path to input
+  
+  - name: enzyme_complex # Delete if not need or copy to add more
+    components:
+      - type: protein
+        file: enzyme1.fasta
+      - type: protein
+        file: enzyme2.fasta
+      - type: ion
+        ccdCodes: '[Mg+2]'
+      - type: ligand
+        file: substrate.smi
+```
+
+Once the example config `.yaml` has been edited for the users specific use case, then it can be provided to `af3_json_creator.py` as below:
+
+```bash
+python af3_json_creator.py multi-complex --config complex_config.yaml --output-dir output
+```
