@@ -15,6 +15,16 @@ MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD
 MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT
 ```
 
+## Monomer Analysis
+
+To generate appropriate `.json` files for monomer analysis using AlphaFold3 e.g. multiple chain IDs, use the following command:
+
+```bash
+af3_json_creator.py protein-protein --fasta1 protein.fasta --monomer 4 --output-dir output
+```
+
+Where `--fasta1` is a FASTA file containing a single protein sequence and `--monomer` is the number of chains you would like to examine.
+
 ## Pairwise Combinations{.unnumbered}
 
 Pairwise combinations will take all proteins within the first supplied FASTA file and all proteins within the second supplied FASTA file and generate corresponding `.json` files.
