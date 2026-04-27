@@ -59,7 +59,7 @@ protein_2_protein_4.json
 To create pairwise combinations of single proteins:
 
 ```bash
-python af3_json_creator.py protein-protein --fasta1 proteins_1.fasta --fasta2 proteins_2.fasta --output-dir output
+af3_json_creator.py protein-protein --fasta1 proteins_1.fasta --fasta2 proteins_2.fasta --output-dir output
 ```
 
 ## Single Protein Multimers{.unnumbered}
@@ -86,7 +86,7 @@ protein_1_multimer_4.json
 To produce a `.json` file for a single multimer complex:
 
 ```bash
-python af3_json_creator.py protein-protein --fasta1 multi_proteins.fasta --output-dir output
+af3_json_creator.py protein-protein --fasta1 multi_proteins.fasta --output-dir output
 ```
 
 ## Protein-Protein Multimer Combinations{.unnumbered}
@@ -111,7 +111,7 @@ monomer.json
 To generate `.json` files with multimer configuration:
 
 ```bash
-python af3_json_creator.py protein-protein --fasta1 multi_proteins.fasta --config multimer.txt --output-dir output
+af3_json_creator.py protein-protein --fasta1 multi_proteins.fasta --config multimer.txt --output-dir output
 ```
 
 For more complex protein-protein combinations, please see [Multi-Component Interactions](multi-component.qmd).

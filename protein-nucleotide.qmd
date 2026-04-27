@@ -49,13 +49,13 @@ protein_2_dna_2.json
 To create pairwise combinations of proteins with DNA:
 
 ```bash
-python af3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --output-dir output
+af3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --output-dir output
 ```
 
 Or to create pairwise combinations of proteins with DNA:
 
 ```bash
-python af3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --output-dir output
+af3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --output-dir output
 ```
 
 ## Protein-Nucleotide Multimer Combinations{.unnumbered}
@@ -82,13 +82,13 @@ Providing a file with multiple nucleotide sequences will generate `.json` files 
 To generate `.json` files with multimer configuration for DNA:
 
 ```bash
-python af3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --config multimer.txt --output-dir output
+af3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --config multimer.txt --output-dir output
 ```
 
 Or to generate `.json` files with multimer configuration for RNA:
 
 ```bash
-python af3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --config multimer.txt --output-dir output
+af3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --config multimer.txt --output-dir output
 ```
 
 For more complex protein-nucleotide combinations, please see [Multi-Component Interactions](multi-component.qmd).

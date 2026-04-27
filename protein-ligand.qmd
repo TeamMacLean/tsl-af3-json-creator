@@ -53,7 +53,7 @@ protein_2_acetic_acid.json
 To create pairwise combinations of proteins with ligands:
 
 ```bash
-python af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --output-dir output
+af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --output-dir output
 ```
 
 ## Protein-Ligand Multimer Combinations{.unnumbered}
@@ -80,7 +80,7 @@ Providing a file with multiple ligands will generate `.json` files with the spec
 To generate `.json` files with multimer configuration:
 
 ```bash
-python af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --config multimer.txt --output-dir output
+af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --config multimer.txt --output-dir output
 ```
 
 For more complex protein-ligand combinations, please see [Multi-Component Interactions](multi-component.qmd).

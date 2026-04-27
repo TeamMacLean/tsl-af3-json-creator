@@ -10,10 +10,10 @@ To generate the example `.yaml` use:
 
 ```bash
 # Basic example
-python af3_json_creator.py create-example-yaml
+af3_json_creator.py create-example-yaml
 
 # Advanced example with modifications
-python af3_json_creator.py create-example-yaml --advanced
+af3_json_creator.py create-example-yaml --advanced
 ```
 
 This will generate the example `.yaml` within the current directory called either `example_config.yaml` or `example_config_advanced.yaml`.
@@ -48,5 +48,5 @@ complexes:
 Once the example config `.yaml` has been edited for the users specific use case, then it can be provided to `af3_json_creator.py` as below:
 
 ```bash
-python af3_json_creator.py multi-complex --config complex_config.yaml --output-dir output
+af3_json_creator.py multi-complex --config complex_config.yaml --output-dir output
 ```
