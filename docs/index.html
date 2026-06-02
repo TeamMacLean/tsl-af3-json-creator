@@ -189,6 +189,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#alphafold3-.json-creator" id="toc-alphafold3-.json-creator" class="nav-link active" data-scroll-target="#alphafold3-.json-creator">AlphaFold3 .json Creator</a>
   <ul class="collapse">
   <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#json-format-version" id="toc-json-format-version" class="nav-link" data-scroll-target="#json-format-version">JSON Format Version</a></li>
+  <li><a href="#global-options" id="toc-global-options" class="nav-link" data-scroll-target="#global-options">Global Options</a></li>
   <li><a href="#detailed-instructions-for-.json-creation" id="toc-detailed-instructions-for-.json-creation" class="nav-link" data-scroll-target="#detailed-instructions-for-.json-creation">Detailed Instructions for .json Creation</a></li>
   </ul></li>
   </ul>
@@ -229,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 27, 2026</p>
+      <p class="date-modified">May 29, 2026</p>
     </div>
   </div>
     
@@ -246,7 +248,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="installation" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="installation">Installation</h2>
 <p>No installation required, simply source the package:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> package af3_tools-0.0.3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> package af3_tools-0.0.4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="json-format-version" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="json-format-version">JSON Format Version</h2>
+<p>The tool now generates AlphaFold3 JSON format <strong>version 4</strong> by default, which supports all the latest features. You can control the version with the <code>--version</code> flag:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> protein-ligand <span class="at">--fasta</span> proteins.fasta <span class="at">--smiles</span> ligands.smi <span class="at">--version</span> 4 <span class="at">--output-dir</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The supported versions and their features are:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Version</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Base format: sequences, modifications, inline MSAs, userCCD</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Adds <code>unpairedMsaPath</code>, <code>pairedMsaPath</code>, <code>mmcifPath</code> for external file references</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Adds <code>userCCDPath</code> for external custom chemical component definitions</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Adds <code>description</code> field for all entity types</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="global-options" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="global-options">Global Options</h2>
+<p>The following options are available on all subcommands:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--output-dir</code></td>
+<td>Output directory for JSON files (default: current directory)</td>
+</tr>
+<tr class="even">
+<td><code>--seed</code></td>
+<td>Provide a specific model seed for reproducibility</td>
+</tr>
+<tr class="odd">
+<td><code>--version</code></td>
+<td>AlphaFold3 JSON format version: 1, 2, 3, or 4 (default: 4)</td>
+</tr>
+<tr class="even">
+<td><code>--user-ccd</code></td>
+<td>Inline user CCD string for custom chemical components</td>
+</tr>
+<tr class="odd">
+<td><code>--user-ccd-path</code></td>
+<td>Path to user CCD file (requires version &gt;= 3)</td>
+</tr>
+</tbody>
+</table>
+<p>For protein-containing subcommands (protein-ligand, protein-protein, protein-dna, protein-rna), additional options apply the same setting to <strong>all</strong> protein entities:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--unpaired-msa-path</code></td>
+<td>Path to unpaired MSA file (requires version &gt;= 2)</td>
+</tr>
+<tr class="even">
+<td><code>--paired-msa-path</code></td>
+<td>Path to paired MSA file (requires version &gt;= 2)</td>
+</tr>
+<tr class="odd">
+<td><code>--mmcif-path</code></td>
+<td>Path to mmCIF template file (requires version &gt;= 2)</td>
+</tr>
+</tbody>
+</table>
+<p>These are useful when running many proteins against the same reference data, e.g.:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> protein-protein <span class="at">--fasta1</span> many_proteins.fasta <span class="at">--monomer</span> 2 <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--mmcif-path</span> /shared/templates/reference.cif <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--unpaired-msa-path</span> /shared/msa/unpaired.a3m <span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output-dir</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="detailed-instructions-for-.json-creation" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="detailed-instructions-for-.json-creation">Detailed Instructions for .json Creation</h2>

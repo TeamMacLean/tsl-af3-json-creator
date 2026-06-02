@@ -234,58 +234,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.1" class="anchored" data-anchor-id="monomer-analysis"><span class="header-section-number">3.1</span> Monomer Analysis</h2>
 <p>To generate appropriate <code>.json</code> files for monomer analysis using AlphaFold3 e.g.&nbsp;multiple chain IDs, use the following command:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> protein-protein <span class="at">--fasta1</span> protein.fasta <span class="at">--monomer</span> 4 <span class="at">--output-dir</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Where <code>--fasta1</code> is a FASTA file containing a single protein sequence and <code>--monomer</code> is the number of chains you would like to examine.</p>
+<p>Where <code>--fasta1</code> is a FASTA file containing protein sequences and <code>--monomer</code> is the number of chains you would like to examine.</p>
+<p>If the FASTA file contains multiple protein sequences, one <code>.json</code> file will be created per protein, each with the specified number of chain IDs. For example, given a FASTA with <code>protein_1</code>, <code>protein_2</code>, and <code>protein_3</code> and <code>--monomer 2</code>, three <code>.json</code> files would be produced:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1.json</span>  <span class="co"># chains A, B (2 copies of protein_1)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_2.json</span>  <span class="co"># chains A, B (2 copies of protein_2)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_3.json</span>  <span class="co"># chains A, B (2 copies of protein_3)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is useful when screening many proteins as homomers without needing to split them into individual FASTA files.</p>
 </section>
 <section id="pairwise-combinations" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="pairwise-combinations">Pairwise Combinations</h2>
 <p>Pairwise combinations will take all proteins within the first supplied FASTA file and all proteins within the second supplied FASTA file and generate corresponding <code>.json</code> files.</p>
 <p>Therefore, if the users has a FASTA file containing:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_1</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_2</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_1</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_2</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>With a second FASTA file containing:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_3</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">MESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_4</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">MKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_3</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">MESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_4</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">MKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>They would obtain 4 <code>.json</code> files:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1_protein_3.json</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1_protein_4.json</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1_protein_3.json</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_2_protein_4.json</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1_protein_3.json</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1_protein_4.json</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_2_protein_3.json</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_2_protein_4.json</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To create pairwise combinations of single proteins:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> protein-protein <span class="at">--fasta1</span> proteins_1.fasta <span class="at">--fasta2</span> proteins_2.fasta <span class="at">--output-dir</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> protein-protein <span class="at">--fasta1</span> proteins_1.fasta <span class="at">--fasta2</span> proteins_2.fasta <span class="at">--output-dir</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="single-protein-multimers" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="single-protein-multimers">Single Protein Multimers</h2>
 <p>To generate a single protein multimer <code>.json</code> then the user provides a a single FASTA file containing all the protein sequences they wish to examine as a multimer:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_1</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_2</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_3</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">MESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_4</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">MKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_1</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">MALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_2</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">MDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_3</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">MESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>protein_4</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">MKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This would generate a single <code>.json</code> file:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1_multimer_4.json</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1_multimer_4.json</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To produce a <code>.json</code> file for a single multimer complex:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> protein-protein <span class="at">--fasta1</span> multi_proteins.fasta <span class="at">--output-dir</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> protein-protein <span class="at">--fasta1</span> multi_proteins.fasta <span class="at">--output-dir</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="protein-protein-multimer-combinations" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="protein-protein-multimer-combinations">Protein-Protein Multimer Combinations</h2>
 <p>Multiple multimer combinations require a configuration file. This file allows the user to specify the protein multimer combinations. It is laid out as:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format: protein_list: group_name</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1,</span> protein_2: heterodimer</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1,</span> protein_2, protein_3: trimer</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1,</span> protein_1: monomer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format: protein_list: group_name</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1,</span> protein_2: heterodimer</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1,</span> protein_2, protein_3: trimer</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1,</span> protein_1: monomer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Where your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. The produced <code>.json</code> files would be:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">heterodimer.json</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">trimer.json</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">monomer.json</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">heterodimer.json</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">trimer.json</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">monomer.json</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To generate <code>.json</code> files with multimer configuration:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> protein-protein <span class="at">--fasta1</span> multi_proteins.fasta <span class="at">--config</span> multimer.txt <span class="at">--output-dir</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> protein-protein <span class="at">--fasta1</span> multi_proteins.fasta <span class="at">--config</span> multimer.txt <span class="at">--output-dir</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For more complex protein-protein combinations, please see <a href="./multi-component.html">Multi-Component Interactions</a>.</p>
 
 

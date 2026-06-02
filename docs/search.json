@@ -14,7 +14,7 @@
     "href": "index.html#installation",
     "title": "Tools for Creating .json files for AlphaFold 3",
     "section": "Installation",
-    "text": "Installation\nNo installation required, simply source the package:\nsource package af3_tools-0.0.3",
+    "text": "Installation\nNo installation required, simply source the package:\nsource package af3_tools-0.0.4",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Tools for Creating .json files for AlphaFold 3</span>"
     ]
@@ -81,7 +81,7 @@
     "href": "protein-protein.html#pairwise-combinations",
     "title": "3  Using af3_json_creator.py for Protein-Protein Analyses",
     "section": "Pairwise Combinations",
-    "text": "Pairwise Combinations\nPairwise combinations will take all proteins within the first supplied FASTA file and all proteins within the second supplied FASTA file and generate corresponding .json files.\nTherefore, if the users has a FASTA file containing:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT\nWith a second FASTA file containing:\n&gt;protein_3\nMESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV\n&gt;protein_4\nMKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV\nThey would obtain 4 .json files:\nprotein_1_protein_3.json\nprotein_1_protein_4.json\nprotein_1_protein_3.json\nprotein_2_protein_4.json\nTo create pairwise combinations of single proteins:\naf3_json_creator.py protein-protein --fasta1 proteins_1.fasta --fasta2 proteins_2.fasta --output-dir output",
+    "text": "Pairwise Combinations\nPairwise combinations will take all proteins within the first supplied FASTA file and all proteins within the second supplied FASTA file and generate corresponding .json files.\nTherefore, if the users has a FASTA file containing:\n&gt;protein_1\nMALGRYGELITDLRSLVMEYPYDEWFHAQLMLALGKAGRRGEALHVYHKVRRLLRDELGLDPSHD\n&gt;protein_2\nMDFKALGPIRAVNDRLAYTPSAPKVKQVLALLVMRANQIVSLESILDELWGDALPRTAVT\nWith a second FASTA file containing:\n&gt;protein_3\nMESNNISEQTRNGIREKAKQGKLITTHAPFGYRYKQGHFVVHEEEAYTV\n&gt;protein_4\nMKRLLQDVKDNKIEIVLSWKLNRISRSMRDVFNIIHEFKEHGVGYKSISENIDTSNASGEV\nThey would obtain 4 .json files:\nprotein_1_protein_3.json\nprotein_1_protein_4.json\nprotein_2_protein_3.json\nprotein_2_protein_4.json\nTo create pairwise combinations of single proteins:\naf3_json_creator.py protein-protein --fasta1 proteins_1.fasta --fasta2 proteins_2.fasta --output-dir output",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Using `af3_json_creator.py` for Protein-Protein Analyses</span>"
     ]
@@ -121,7 +121,7 @@
     "href": "protein-nucleotide.html#pairwise-combinations",
     "title": "4  Using af3_json_creator.py for Protein-Nucleotide Analyses",
     "section": "Pairwise Combinations",
-    "text": "Pairwise Combinations\nPairwise combinations will take all proteins within a FASTA file and all nucleotide sequences within a FASTA file and generate corresponding .json files.\nFrom the above example input files of proteins with DNA, 4 .json files would be generated:\nprotein_1_dna_1.json\nprotein_1_dna_2.json\nprotein_2_dna_1.json\nprotein_2_dna_2.json\nTo create pairwise combinations of proteins with DNA:\naf3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --output-dir output\nOr to create pairwise combinations of proteins with DNA:\naf3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --output-dir output",
+    "text": "Pairwise Combinations\nPairwise combinations will take all proteins within a FASTA file and all nucleotide sequences within a FASTA file and generate corresponding .json files.\nFrom the above example input files of proteins with DNA, 4 .json files would be generated:\nprotein_1_dna_1.json\nprotein_1_dna_2.json\nprotein_2_dna_1.json\nprotein_2_dna_2.json\nTo create pairwise combinations of proteins with DNA:\naf3_json_creator.py protein-dna --fasta-protein proteins.fasta --fasta-nucleic dna_sequences.fasta --output-dir output\nOr to create pairwise combinations of proteins with RNA:\naf3_json_creator.py protein-rna --fasta-protein proteins.fasta --fasta-nucleic rna_sequences.fasta --output-dir output",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Using `af3_json_creator.py` for Protein-Nucleotide Analyses</span>"
     ]
@@ -131,7 +131,7 @@
     "href": "protein-nucleotide.html#protein-nucleotide-multimer-combinations",
     "title": "4  Using af3_json_creator.py for Protein-Nucleotide Analyses",
     "section": "Protein-Nucleotide Multimer Combinations",
-    "text": "Protein-Nucleotide Multimer Combinations\nMultimer combinations requires a configuration file. This file allows the user to specify the protein and nucleotide combinations. It is laid out as:\n# Format: protein_list: group_name\nprotein_1, protein_2: heterodimer\nprotein_1, protein_2, protein_3: trimer\nprotein_1: monomer\nWhere your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. If provided with a single DNA or RNA sequence the .json files produced would be:\nheterodimer_nucleotide.json\ntrimer_nucleotide.json\nmonomer_nucleotide.json\nProviding a file with multiple nucleotide sequences will generate .json files with the specified multimer combinations for each individual nucleotide.\nTo generate .json files with multimer configuration for DNA:\naf3_json_creator.py protein-dna --fasta proteins.fasta --fasta-nucleic dna_sequences.fasta --config multimer.txt --output-dir output\nOr to generate .json files with multimer configuration for RNA:\naf3_json_creator.py protein-rna --fasta proteins.fasta --fasta-nucleic rna_sequences.fasta --config multimer.txt --output-dir output\nFor more complex protein-nucleotide combinations, please see Multi-Component Interactions.",
+    "text": "Protein-Nucleotide Multimer Combinations\nMultimer combinations requires a configuration file. This file allows the user to specify the protein and nucleotide combinations. It is laid out as:\n# Format: protein_list: group_name\nprotein_1, protein_2: heterodimer\nprotein_1, protein_2, protein_3: trimer\nprotein_1: monomer\nWhere your input FASTA file would have three proteins: protein_1, protein_2 and protein_3. If provided with a single DNA or RNA sequence the .json files produced would be:\nheterodimer_nucleotide.json\ntrimer_nucleotide.json\nmonomer_nucleotide.json\nProviding a file with multiple nucleotide sequences will generate .json files with the specified multimer combinations for each individual nucleotide.\nTo generate .json files with multimer configuration for DNA:\naf3_json_creator.py protein-dna --fasta-protein proteins.fasta --fasta-nucleic dna_sequences.fasta --config multimer.txt --output-dir output\nOr to generate .json files with multimer configuration for RNA:\naf3_json_creator.py protein-rna --fasta-protein proteins.fasta --fasta-nucleic rna_sequences.fasta --config multimer.txt --output-dir output\nFor more complex protein-nucleotide combinations, please see Multi-Component Interactions.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Using `af3_json_creator.py` for Protein-Nucleotide Analyses</span>"
     ]
@@ -141,7 +141,7 @@
     "href": "multi-component.html#generating-example-.yaml-configuration-file",
     "title": "5  Using af3_json_creator.py for Multi-Component Analyses",
     "section": "",
-    "text": "# Basic example\naf3_json_creator.py create-example-yaml\n\n# Advanced example with modifications\naf3_json_creator.py create-example-yaml --advanced",
+    "text": "Basic — multi-component complexes (protein, ligand, nucleotide, ion)\nAdvanced — adds post-translational and nucleotide modifications\nFull — demonstrates all version 2-4 features including defaults, MSA paths, templates, bonded atom pairs, descriptions, and custom CCD paths\n\n\n# Basic example\naf3_json_creator.py create-example-yaml --output-dir output\n\n# Advanced example with modifications\naf3_json_creator.py create-example-yaml --advanced --output-dir output\n\n# Full example with all v2-v4 features\naf3_json_creator.py create-example-yaml --full --output-dir output",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Using `af3_json_creator.py` for Multi-Component Analyses</span>"
     ]
@@ -151,7 +151,7 @@
     "href": "multi-component.html#generating-.json-using-example-configuration-.yaml",
     "title": "5  Using af3_json_creator.py for Multi-Component Analyses",
     "section": "5.1 Generating .json Using Example Configuration .yaml",
-    "text": "5.1 Generating .json Using Example Configuration .yaml\nOnce the user has the example config .yaml they need to modify it to provide the name of the input files. For example, if working with the default example config .yaml, then the following lines would need to be modified:\ncomplexes:\n  - name: transcription_complex # modify to the name you want\n    components:\n      - type: protein\n        file: transcription_factor.fasta # Provide path to input\n      - type: dna\n        file: promoter.fasta # Provide path to input\n      - type: ligand\n        file: cofactor.smi # Provide path to input\n  \n  - name: enzyme_complex # Delete if not need or copy to add more\n    components:\n      - type: protein\n        file: enzyme1.fasta\n      - type: protein\n        file: enzyme2.fasta\n      - type: ion\n        ccdCodes: '[Mg+2]'\n      - type: ligand\n        file: substrate.smi\nOnce the example config .yaml has been edited for the users specific use case, then it can be provided to af3_json_creator.py as below:\naf3_json_creator.py multi-complex --config complex_config.yaml --output-dir output",
+    "text": "5.1 Generating .json Using Example Configuration .yaml\nOnce the user has the example config .yaml they need to modify it to provide the name of the input files. For example, if working with the default example config .yaml, then the following lines would need to be modified:\ncomplexes:\n  - name: transcription_complex # modify to the name you want\n    components:\n      - type: protein\n        file: transcription_factor.fasta # Provide path to input\n      - type: dna\n        file: promoter.fasta # Provide path to input\n      - type: ligand\n        file: cofactor.smi # Provide path to input\n\n  - name: enzyme_complex # Delete if not needed or copy to add more\n    components:\n      - type: protein\n        file: enzyme1.fasta\n      - type: protein\n        file: enzyme2.fasta\n      - type: ion\n        ccdCodes:\n          - MG\n      - type: ligand\n        file: substrate.smi\nOnce the example config .yaml has been edited for the users specific use case, then it can be provided to af3_json_creator.py as below:\naf3_json_creator.py multi-complex --config complex_config.yaml --output-dir output",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Using `af3_json_creator.py` for Multi-Component Analyses</span>"
     ]
@@ -191,7 +191,7 @@
     "href": "multi-component.html",
     "title": "5  Using af3_json_creator.py for Multi-Component Analyses",
     "section": "",
-    "text": "Generating example .yaml Configuration File\nA major advantage of using AlphaFold3 over AlphaFold2 is the ability to examine more complex or multi-component associations e.g. proteins with ligands and nucleotides. To assist in generating .json files for these more diverse scenarios the user can use an example .yaml configuration file and modify as required. This configuration file is then used as input to af3_json_creator.py\nThere are two example .yaml configuration files available, one which provides the option to add multi-components only e.g. protein, with ligand and nucleotides. The second is more advanced and also provides the option to add modifications to the provided proteins or nucleotides.\nTo generate the example .yaml use:\nThis will generate the example .yaml within the current directory called either example_config.yaml or example_config_advanced.yaml.",
+    "text": "Generating example .yaml Configuration File\nA major advantage of using AlphaFold3 over AlphaFold2 is the ability to examine more complex or multi-component associations e.g. proteins with ligands and nucleotides. To assist in generating .json files for these more diverse scenarios the user can use an example .yaml configuration file and modify as required. This configuration file is then used as input to af3_json_creator.py\nThere are three example .yaml configuration files available:\nTo generate the example .yaml use:\nThis will generate the example .yaml within the specified output directory (or the current directory by default) called example_config.yaml, example_config_advanced.yaml, or example_config_full.yaml respectively.",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Using `af3_json_creator.py` for Multi-Component Analyses</span>"
     ]
@@ -201,9 +201,49 @@
     "href": "protein-protein.html#monomer-analysis",
     "title": "3  Using af3_json_creator.py for Protein-Protein Analyses",
     "section": "3.1 Monomer Analysis",
-    "text": "3.1 Monomer Analysis\nTo generate appropriate .json files for monomer analysis using AlphaFold3 e.g. multiple chain IDs, use the following command:\naf3_json_creator.py protein-protein --fasta1 protein.fasta --monomer 4 --output-dir output\nWhere --fasta1 is a FASTA file containing a single protein sequence and --monomer is the number of chains you would like to examine.",
+    "text": "3.1 Monomer Analysis\nTo generate appropriate .json files for monomer analysis using AlphaFold3 e.g. multiple chain IDs, use the following command:\naf3_json_creator.py protein-protein --fasta1 protein.fasta --monomer 4 --output-dir output\nWhere --fasta1 is a FASTA file containing protein sequences and --monomer is the number of chains you would like to examine.\nIf the FASTA file contains multiple protein sequences, one .json file will be created per protein, each with the specified number of chain IDs. For example, given a FASTA with protein_1, protein_2, and protein_3 and --monomer 2, three .json files would be produced:\nprotein_1.json  # chains A, B (2 copies of protein_1)\nprotein_2.json  # chains A, B (2 copies of protein_2)\nprotein_3.json  # chains A, B (2 copies of protein_3)\nThis is useful when screening many proteins as homomers without needing to split them into individual FASTA files.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Using `af3_json_creator.py` for Protein-Protein Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#json-format-version",
+    "href": "index.html#json-format-version",
+    "title": "Tools for Creating .json files for AlphaFold 3",
+    "section": "JSON Format Version",
+    "text": "JSON Format Version\nThe tool now generates AlphaFold3 JSON format version 4 by default, which supports all the latest features. You can control the version with the --version flag:\naf3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --version 4 --output-dir output\nThe supported versions and their features are:\n\n\n\n\n\n\n\nVersion\nFeatures\n\n\n\n\n1\nBase format: sequences, modifications, inline MSAs, userCCD\n\n\n2\nAdds unpairedMsaPath, pairedMsaPath, mmcifPath for external file references\n\n\n3\nAdds userCCDPath for external custom chemical component definitions\n\n\n4\nAdds description field for all entity types",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Tools for Creating .json files for AlphaFold 3</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#global-options",
+    "href": "index.html#global-options",
+    "title": "Tools for Creating .json files for AlphaFold 3",
+    "section": "Global Options",
+    "text": "Global Options\nThe following options are available on all subcommands:\n\n\n\n\n\n\n\nFlag\nDescription\n\n\n\n\n--output-dir\nOutput directory for JSON files (default: current directory)\n\n\n--seed\nProvide a specific model seed for reproducibility\n\n\n--version\nAlphaFold3 JSON format version: 1, 2, 3, or 4 (default: 4)\n\n\n--user-ccd\nInline user CCD string for custom chemical components\n\n\n--user-ccd-path\nPath to user CCD file (requires version &gt;= 3)\n\n\n\nFor protein-containing subcommands (protein-ligand, protein-protein, protein-dna, protein-rna), additional options apply the same setting to all protein entities:\n\n\n\n\n\n\n\nFlag\nDescription\n\n\n\n\n--unpaired-msa-path\nPath to unpaired MSA file (requires version &gt;= 2)\n\n\n--paired-msa-path\nPath to paired MSA file (requires version &gt;= 2)\n\n\n--mmcif-path\nPath to mmCIF template file (requires version &gt;= 2)\n\n\n\nThese are useful when running many proteins against the same reference data, e.g.:\naf3_json_creator.py protein-protein --fasta1 many_proteins.fasta --monomer 2 \\\n    --mmcif-path /shared/templates/reference.cif \\\n    --unpaired-msa-path /shared/msa/unpaired.a3m \\\n    --output-dir output",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Tools for Creating .json files for AlphaFold 3</span>"
+    ]
+  },
+  {
+    "objectID": "multi-component.html#using-the-defaults-block",
+    "href": "multi-component.html#using-the-defaults-block",
+    "title": "5  Using af3_json_creator.py for Multi-Component Analyses",
+    "section": "Using the defaults Block",
+    "text": "Using the defaults Block\nWhen working with many components of the same type that share common settings (e.g. the same MSA path or template), the defaults block avoids repeating these settings for every component. Defaults are applied to all components of the matching type, and any per-component setting overrides the default.\ndefaults:\n  protein:\n    unpairedMsaPath: /shared/msa/unpaired/\n    pairedMsaPath: /shared/msa/paired/\n    templates:\n      - mmcifPath: /shared/templates/reference.cif\n  rna:\n    unpairedMsaPath: /shared/rna_msa/\n\ncomplexes:\n  - name: my_complex\n    components:\n      - type: protein\n        file: protein_a.fasta\n        # Uses MSA paths and templates from defaults\n\n      - type: protein\n        file: protein_b.fasta\n        # Override the default MSA path for this specific protein\n        unpairedMsaPath: /custom/msa/protein_b.a3m\n\n      - type: rna\n        file: my_rna.fasta\n        # Uses RNA MSA path from defaults\nThis is particularly useful when screening many proteins against the same reference data — you only need to specify the paths once.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Using `af3_json_creator.py` for Multi-Component Analyses</span>"
+    ]
+  },
+  {
+    "objectID": "multi-component.html#full-features-version-2-4",
+    "href": "multi-component.html#full-features-version-2-4",
+    "title": "5  Using af3_json_creator.py for Multi-Component Analyses",
+    "section": "Full Features (Version 2-4)",
+    "text": "Full Features (Version 2-4)\nThe full example .yaml (--full) demonstrates the additional fields available in AlphaFold3 JSON versions 2-4. Below is a summary of the features available per component type.\n\n5.1.1 Protein Components\n\n\n\n\n\n\n\n\nField\nVersion\nDescription\n\n\n\n\nmodifications\n1+\nPost-translational modifications (ptmType, ptmPosition)\n\n\nunpairedMsaPath\n2+\nPath to unpaired MSA file (A3M format)\n\n\npairedMsaPath\n2+\nPath to paired MSA file (A3M format)\n\n\ntemplates\n2+\nStructural templates with mmcifPath, queryIndices, templateIndices\n\n\ndescription\n4\nTextual annotation for the entity\n\n\n\n\n\n5.1.2 RNA Components\n\n\n\n\n\n\n\n\nField\nVersion\nDescription\n\n\n\n\nmodifications\n1+\nBase modifications (modificationType, basePosition)\n\n\nunpairedMsaPath\n2+\nPath to unpaired MSA file\n\n\ndescription\n4\nTextual annotation for the entity\n\n\n\n\n\n5.1.3 DNA Components\n\n\n\n\n\n\n\n\nField\nVersion\nDescription\n\n\n\n\nmodifications\n1+\nBase modifications (modificationType, basePosition)\n\n\ndescription\n4\nTextual annotation for the entity\n\n\n\n\n\n5.1.4 Ligand and Ion Components\n\n\n\nField\nVersion\nDescription\n\n\n\n\ndescription\n4\nTextual annotation for the entity\n\n\n\n\n\n5.1.5 Top-Level / Per-Complex Fields\n\n\n\n\n\n\n\n\nField\nVersion\nDescription\n\n\n\n\nbondedAtomPairs\n1+\nCovalent bonds between entities (per-complex)\n\n\nuserCCD\n1+\nInline custom chemical component dictionary\n\n\nuserCCDPath\n3+\nPath to custom CCD file\n\n\n\n\n\n5.1.6 Example: Complex with Templates and Bonded Atoms\ncomplexes:\n  - name: covalent_complex\n    components:\n      - type: protein\n        file: enzyme.fasta\n        description: Catalytic enzyme\n        templates:\n          - mmcifPath: /templates/enzyme_xtal.cif\n            queryIndices: [0, 1, 2, 3, 4]\n            templateIndices: [0, 1, 2, 3, 4]\n      - type: ligand\n        file: inhibitor.smi\n        description: Covalent inhibitor\n    bondedAtomPairs:\n      - - [A, 1, SG]    # Cysteine sulfur on chain A\n        - [B, 1, C1]    # Carbon on ligand chain B",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Using `af3_json_creator.py` for Multi-Component Analyses</span>"
     ]
   }
 ]

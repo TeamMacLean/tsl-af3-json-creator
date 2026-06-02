@@ -23,7 +23,17 @@ To generate appropriate `.json` files for monomer analysis using AlphaFold3 e.g.
 af3_json_creator.py protein-protein --fasta1 protein.fasta --monomer 4 --output-dir output
 ```
 
-Where `--fasta1` is a FASTA file containing a single protein sequence and `--monomer` is the number of chains you would like to examine.
+Where `--fasta1` is a FASTA file containing protein sequences and `--monomer` is the number of chains you would like to examine.
+
+If the FASTA file contains multiple protein sequences, one `.json` file will be created per protein, each with the specified number of chain IDs.  For example, given a FASTA with `protein_1`, `protein_2`, and `protein_3` and `--monomer 2`, three `.json` files would be produced:
+
+```bash
+protein_1.json  # chains A, B (2 copies of protein_1)
+protein_2.json  # chains A, B (2 copies of protein_2)
+protein_3.json  # chains A, B (2 copies of protein_3)
+```
+
+This is useful when screening many proteins as homomers without needing to split them into individual FASTA files.
 
 ## Pairwise Combinations{.unnumbered}
 
@@ -52,7 +62,7 @@ They would obtain 4 `.json` files:
 ```bash
 protein_1_protein_3.json
 protein_1_protein_4.json
-protein_1_protein_3.json
+protein_2_protein_3.json
 protein_2_protein_4.json
 ```
 

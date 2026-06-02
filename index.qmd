@@ -7,7 +7,7 @@ categories:
   - tutorial
 author: "Alison MacFadyen"
 date: "09/25/2025"
-date-modified: "04/27/2026"
+date-modified: "05/29/2026"
 ---
 
 # AlphaFold3 .json Creator{.unnumbered}
@@ -19,9 +19,54 @@ Unlike AlphaFold2, AlphaFold3 allows users to analyse more complex protein inter
 No installation required, simply source the package:
 
 ```bash
-source package af3_tools-0.0.3
+source package af3_tools-0.0.4
 ```
 
+## JSON Format Version{.unnumbered}
+
+The tool now generates AlphaFold3 JSON format **version 4** by default, which supports all the latest features.  You can control the version with the `--version` flag:
+
+```bash
+af3_json_creator.py protein-ligand --fasta proteins.fasta --smiles ligands.smi --version 4 --output-dir output
+```
+
+The supported versions and their features are:
+
+| Version | Features |
+|---------|----------|
+| 1 | Base format: sequences, modifications, inline MSAs, userCCD |
+| 2 | Adds `unpairedMsaPath`, `pairedMsaPath`, `mmcifPath` for external file references |
+| 3 | Adds `userCCDPath` for external custom chemical component definitions |
+| 4 | Adds `description` field for all entity types |
+
+## Global Options{.unnumbered}
+
+The following options are available on all subcommands:
+
+| Flag | Description |
+|------|-------------|
+| `--output-dir` | Output directory for JSON files (default: current directory) |
+| `--seed` | Provide a specific model seed for reproducibility |
+| `--version` | AlphaFold3 JSON format version: 1, 2, 3, or 4 (default: 4) |
+| `--user-ccd` | Inline user CCD string for custom chemical components |
+| `--user-ccd-path` | Path to user CCD file (requires version >= 3) |
+
+For protein-containing subcommands (protein-ligand, protein-protein, protein-dna, protein-rna), additional options apply the same setting to **all** protein entities:
+
+| Flag | Description |
+|------|-------------|
+| `--unpaired-msa-path` | Path to unpaired MSA file (requires version >= 2) |
+| `--paired-msa-path` | Path to paired MSA file (requires version >= 2) |
+| `--mmcif-path` | Path to mmCIF template file (requires version >= 2) |
+
+These are useful when running many proteins against the same reference data, e.g.:
+
+```bash
+af3_json_creator.py protein-protein --fasta1 many_proteins.fasta --monomer 2 \
+    --mmcif-path /shared/templates/reference.cif \
+    --unpaired-msa-path /shared/msa/unpaired.a3m \
+    --output-dir output
+```
 
 ## Detailed Instructions for .json Creation{.unnumbered}
 

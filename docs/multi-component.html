@@ -186,6 +186,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#generating-example-.yaml-configuration-file" id="toc-generating-example-.yaml-configuration-file" class="nav-link active" data-scroll-target="#generating-example-.yaml-configuration-file">Generating example <code>.yaml</code> Configuration File</a></li>
   <li><a href="#generating-.json-using-example-configuration-.yaml" id="toc-generating-.json-using-example-configuration-.yaml" class="nav-link" data-scroll-target="#generating-.json-using-example-configuration-.yaml"><span class="header-section-number">5.1</span> Generating <code>.json</code> Using Example Configuration <code class="unnumbered">.yaml</code></a></li>
+  <li><a href="#using-the-defaults-block" id="toc-using-the-defaults-block" class="nav-link" data-scroll-target="#using-the-defaults-block">Using the <code>defaults</code> Block</a></li>
+  <li><a href="#full-features-version-2-4" id="toc-full-features-version-2-4" class="nav-link" data-scroll-target="#full-features-version-2-4">Full Features (Version 2-4)</a>
+  <ul class="collapse">
+  <li><a href="#protein-components" id="toc-protein-components" class="nav-link" data-scroll-target="#protein-components"><span class="header-section-number">5.1.1</span> Protein Components</a></li>
+  <li><a href="#rna-components" id="toc-rna-components" class="nav-link" data-scroll-target="#rna-components"><span class="header-section-number">5.1.2</span> RNA Components</a></li>
+  <li><a href="#dna-components" id="toc-dna-components" class="nav-link" data-scroll-target="#dna-components"><span class="header-section-number">5.1.3</span> DNA Components</a></li>
+  <li><a href="#ligand-and-ion-components" id="toc-ligand-and-ion-components" class="nav-link" data-scroll-target="#ligand-and-ion-components"><span class="header-section-number">5.1.4</span> Ligand and Ion Components</a></li>
+  <li><a href="#top-level-per-complex-fields" id="toc-top-level-per-complex-fields" class="nav-link" data-scroll-target="#top-level-per-complex-fields"><span class="header-section-number">5.1.5</span> Top-Level / Per-Complex Fields</a></li>
+  <li><a href="#example-complex-with-templates-and-bonded-atoms" id="toc-example-complex-with-templates-and-bonded-atoms" class="nav-link" data-scroll-target="#example-complex-with-templates-and-bonded-atoms"><span class="header-section-number">5.1.6</span> Example: Complex with Templates and Bonded Atoms</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -214,14 +224,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A major advantage of using AlphaFold3 over AlphaFold2 is the ability to examine more complex or multi-component associations e.g.&nbsp;proteins with ligands and nucleotides. To assist in generating <code>.json</code> files for these more diverse scenarios the user can use an example <code>.yaml</code> configuration file and modify as required. This configuration file is then used as input to <code>af3_json_creator.py</code></p>
 <section id="generating-example-.yaml-configuration-file" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="generating-example-.yaml-configuration-file">Generating example <code>.yaml</code> Configuration File</h2>
-<p>There are two example <code>.yaml</code> configuration files available, one which provides the option to add multi-components only e.g.&nbsp;protein, with ligand and nucleotides. The second is more advanced and also provides the option to add modifications to the provided proteins or nucleotides.</p>
+<p>There are three example <code>.yaml</code> configuration files available:</p>
+<ul>
+<li><strong>Basic</strong> — multi-component complexes (protein, ligand, nucleotide, ion)</li>
+<li><strong>Advanced</strong> — adds post-translational and nucleotide modifications</li>
+<li><strong>Full</strong> — demonstrates all version 2-4 features including defaults, MSA paths, templates, bonded atom pairs, descriptions, and custom CCD paths</li>
+</ul>
 <p>To generate the example <code>.yaml</code> use:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic example</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> create-example-yaml</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> create-example-yaml <span class="at">--output-dir</span> output</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Advanced example with modifications</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> create-example-yaml <span class="at">--advanced</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This will generate the example <code>.yaml</code> within the current directory called either <code>example_config.yaml</code> or <code>example_config_advanced.yaml</code>.</p>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> create-example-yaml <span class="at">--advanced</span> <span class="at">--output-dir</span> output</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Full example with all v2-v4 features</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> create-example-yaml <span class="at">--full</span> <span class="at">--output-dir</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This will generate the example <code>.yaml</code> within the specified output directory (or the current directory by default) called <code>example_config.yaml</code>, <code>example_config_advanced.yaml</code>, or <code>example_config_full.yaml</code> respectively.</p>
 </section>
 <section id="generating-.json-using-example-configuration-.yaml" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="generating-.json-using-example-configuration-.yaml"><span class="header-section-number">5.1</span> Generating <code>.json</code> Using Example Configuration <code class="unnumbered">.yaml</code></h2>
@@ -235,21 +253,234 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file</span><span class="kw">:</span><span class="at"> promoter.fasta</span><span class="co"> # Provide path to input</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> ligand</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file</span><span class="kw">:</span><span class="at"> cofactor.smi</span><span class="co"> # Provide path to input</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> enzyme_complex</span><span class="co"> # Delete if not need or copy to add more</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> enzyme_complex</span><span class="co"> # Delete if not needed or copy to add more</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">components</span><span class="kw">:</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> protein</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file</span><span class="kw">:</span><span class="at"> enzyme1.fasta</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> protein</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file</span><span class="kw">:</span><span class="at"> enzyme2.fasta</span></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> ion</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">ccdCodes</span><span class="kw">:</span><span class="at"> </span><span class="st">'[Mg+2]'</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> ligand</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file</span><span class="kw">:</span><span class="at"> substrate.smi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">ccdCodes</span><span class="kw">:</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> MG</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> ligand</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file</span><span class="kw">:</span><span class="at"> substrate.smi</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Once the example config <code>.yaml</code> has been edited for the users specific use case, then it can be provided to <code>af3_json_creator.py</code> as below:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">af3_json_creator.py</span> multi-complex <span class="at">--config</span> complex_config.yaml <span class="at">--output-dir</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="using-the-defaults-block" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="using-the-defaults-block">Using the <code>defaults</code> Block</h2>
+<p>When working with many components of the same type that share common settings (e.g.&nbsp;the same MSA path or template), the <code>defaults</code> block avoids repeating these settings for every component. Defaults are applied to all components of the matching type, and any per-component setting overrides the default.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">defaults</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">protein</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">unpairedMsaPath</span><span class="kw">:</span><span class="at"> /shared/msa/unpaired/</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pairedMsaPath</span><span class="kw">:</span><span class="at"> /shared/msa/paired/</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">mmcifPath</span><span class="kw">:</span><span class="at"> /shared/templates/reference.cif</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rna</span><span class="kw">:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">unpairedMsaPath</span><span class="kw">:</span><span class="at"> /shared/rna_msa/</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">complexes</span><span class="kw">:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> my_complex</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">components</span><span class="kw">:</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> protein</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file</span><span class="kw">:</span><span class="at"> protein_a.fasta</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">        # Uses MSA paths and templates from defaults</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> protein</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file</span><span class="kw">:</span><span class="at"> protein_b.fasta</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">        # Override the default MSA path for this specific protein</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">unpairedMsaPath</span><span class="kw">:</span><span class="at"> /custom/msa/protein_b.a3m</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> rna</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file</span><span class="kw">:</span><span class="at"> my_rna.fasta</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">        # Uses RNA MSA path from defaults</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is particularly useful when screening many proteins against the same reference data — you only need to specify the paths once.</p>
+</section>
+<section id="full-features-version-2-4" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="full-features-version-2-4">Full Features (Version 2-4)</h2>
+<p>The full example <code>.yaml</code> (<code>--full</code>) demonstrates the additional fields available in AlphaFold3 JSON versions 2-4. Below is a summary of the features available per component type.</p>
+<section id="protein-components" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="protein-components"><span class="header-section-number">5.1.1</span> Protein Components</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 31%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Version</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>modifications</code></td>
+<td>1+</td>
+<td>Post-translational modifications (<code>ptmType</code>, <code>ptmPosition</code>)</td>
+</tr>
+<tr class="even">
+<td><code>unpairedMsaPath</code></td>
+<td>2+</td>
+<td>Path to unpaired MSA file (A3M format)</td>
+</tr>
+<tr class="odd">
+<td><code>pairedMsaPath</code></td>
+<td>2+</td>
+<td>Path to paired MSA file (A3M format)</td>
+</tr>
+<tr class="even">
+<td><code>templates</code></td>
+<td>2+</td>
+<td>Structural templates with <code>mmcifPath</code>, <code>queryIndices</code>, <code>templateIndices</code></td>
+</tr>
+<tr class="odd">
+<td><code>description</code></td>
+<td>4</td>
+<td>Textual annotation for the entity</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="rna-components" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="rna-components"><span class="header-section-number">5.1.2</span> RNA Components</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 31%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Version</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>modifications</code></td>
+<td>1+</td>
+<td>Base modifications (<code>modificationType</code>, <code>basePosition</code>)</td>
+</tr>
+<tr class="even">
+<td><code>unpairedMsaPath</code></td>
+<td>2+</td>
+<td>Path to unpaired MSA file</td>
+</tr>
+<tr class="odd">
+<td><code>description</code></td>
+<td>4</td>
+<td>Textual annotation for the entity</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dna-components" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="dna-components"><span class="header-section-number">5.1.3</span> DNA Components</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 31%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Version</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>modifications</code></td>
+<td>1+</td>
+<td>Base modifications (<code>modificationType</code>, <code>basePosition</code>)</td>
+</tr>
+<tr class="even">
+<td><code>description</code></td>
+<td>4</td>
+<td>Textual annotation for the entity</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ligand-and-ion-components" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="ligand-and-ion-components"><span class="header-section-number">5.1.4</span> Ligand and Ion Components</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Version</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>description</code></td>
+<td>4</td>
+<td>Textual annotation for the entity</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="top-level-per-complex-fields" class="level3" data-number="5.1.5">
+<h3 data-number="5.1.5" class="anchored" data-anchor-id="top-level-per-complex-fields"><span class="header-section-number">5.1.5</span> Top-Level / Per-Complex Fields</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 31%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Version</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bondedAtomPairs</code></td>
+<td>1+</td>
+<td>Covalent bonds between entities (per-complex)</td>
+</tr>
+<tr class="even">
+<td><code>userCCD</code></td>
+<td>1+</td>
+<td>Inline custom chemical component dictionary</td>
+</tr>
+<tr class="odd">
+<td><code>userCCDPath</code></td>
+<td>3+</td>
+<td>Path to custom CCD file</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-complex-with-templates-and-bonded-atoms" class="level3" data-number="5.1.6">
+<h3 data-number="5.1.6" class="anchored" data-anchor-id="example-complex-with-templates-and-bonded-atoms"><span class="header-section-number">5.1.6</span> Example: Complex with Templates and Bonded Atoms</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">complexes</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> covalent_complex</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">components</span><span class="kw">:</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> protein</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file</span><span class="kw">:</span><span class="at"> enzyme.fasta</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Catalytic enzyme</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">templates</span><span class="kw">:</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">mmcifPath</span><span class="kw">:</span><span class="at"> /templates/enzyme_xtal.cif</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">queryIndices</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="dv">0</span><span class="kw">,</span><span class="at"> </span><span class="dv">1</span><span class="kw">,</span><span class="at"> </span><span class="dv">2</span><span class="kw">,</span><span class="at"> </span><span class="dv">3</span><span class="kw">,</span><span class="at"> </span><span class="dv">4</span><span class="kw">]</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">            </span><span class="fu">templateIndices</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="dv">0</span><span class="kw">,</span><span class="at"> </span><span class="dv">1</span><span class="kw">,</span><span class="at"> </span><span class="dv">2</span><span class="kw">,</span><span class="at"> </span><span class="dv">3</span><span class="kw">,</span><span class="at"> </span><span class="dv">4</span><span class="kw">]</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> ligand</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">file</span><span class="kw">:</span><span class="at"> inhibitor.smi</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">description</span><span class="kw">:</span><span class="at"> Covalent inhibitor</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">bondedAtomPairs</span><span class="kw">:</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="kw">-</span><span class="at"> </span><span class="kw">[</span><span class="at">A</span><span class="kw">,</span><span class="at"> </span><span class="dv">1</span><span class="kw">,</span><span class="at"> SG</span><span class="kw">]</span><span class="co">    # Cysteine sulfur on chain A</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="kw">[</span><span class="at">B</span><span class="kw">,</span><span class="at"> </span><span class="dv">1</span><span class="kw">,</span><span class="at"> C1</span><span class="kw">]</span><span class="co">    # Carbon on ligand chain B</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

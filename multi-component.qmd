@@ -4,19 +4,26 @@ A major advantage of using AlphaFold3 over AlphaFold2 is the ability to examine 
 
 ## Generating example `.yaml` Configuration File{.unnumbered}
 
-There are two example `.yaml` configuration files available, one which provides the option to add multi-components only e.g. protein, with ligand and nucleotides.  The second is more advanced and also provides the option to add modifications to the provided proteins or nucleotides.
+There are three example `.yaml` configuration files available:
+
+- **Basic** — multi-component complexes (protein, ligand, nucleotide, ion)
+- **Advanced** — adds post-translational and nucleotide modifications
+- **Full** — demonstrates all version 2-4 features including defaults, MSA paths, templates, bonded atom pairs, descriptions, and custom CCD paths
 
 To generate the example `.yaml` use:
 
 ```bash
 # Basic example
-af3_json_creator.py create-example-yaml
+af3_json_creator.py create-example-yaml --output-dir output
 
 # Advanced example with modifications
-af3_json_creator.py create-example-yaml --advanced
+af3_json_creator.py create-example-yaml --advanced --output-dir output
+
+# Full example with all v2-v4 features
+af3_json_creator.py create-example-yaml --full --output-dir output
 ```
 
-This will generate the example `.yaml` within the current directory called either `example_config.yaml` or `example_config_advanced.yaml`.
+This will generate the example `.yaml` within the specified output directory (or the current directory by default) called `example_config.yaml`, `example_config_advanced.yaml`, or `example_config_full.yaml` respectively.
 
 ## Generating `.json` Using Example Configuration `.yaml`{.unnumbered}
 
@@ -32,15 +39,16 @@ complexes:
         file: promoter.fasta # Provide path to input
       - type: ligand
         file: cofactor.smi # Provide path to input
-  
-  - name: enzyme_complex # Delete if not need or copy to add more
+
+  - name: enzyme_complex # Delete if not needed or copy to add more
     components:
       - type: protein
         file: enzyme1.fasta
       - type: protein
         file: enzyme2.fasta
       - type: ion
-        ccdCodes: '[Mg+2]'
+        ccdCodes:
+          - MG
       - type: ligand
         file: substrate.smi
 ```
@@ -49,4 +57,101 @@ Once the example config `.yaml` has been edited for the users specific use case,
 
 ```bash
 af3_json_creator.py multi-complex --config complex_config.yaml --output-dir output
+```
+
+## Using the `defaults` Block{.unnumbered}
+
+When working with many components of the same type that share common settings (e.g. the same MSA path or template), the `defaults` block avoids repeating these settings for every component.  Defaults are applied to all components of the matching type, and any per-component setting overrides the default.
+
+```yaml
+defaults:
+  protein:
+    unpairedMsaPath: /shared/msa/unpaired/
+    pairedMsaPath: /shared/msa/paired/
+    templates:
+      - mmcifPath: /shared/templates/reference.cif
+  rna:
+    unpairedMsaPath: /shared/rna_msa/
+
+complexes:
+  - name: my_complex
+    components:
+      - type: protein
+        file: protein_a.fasta
+        # Uses MSA paths and templates from defaults
+
+      - type: protein
+        file: protein_b.fasta
+        # Override the default MSA path for this specific protein
+        unpairedMsaPath: /custom/msa/protein_b.a3m
+
+      - type: rna
+        file: my_rna.fasta
+        # Uses RNA MSA path from defaults
+```
+
+This is particularly useful when screening many proteins against the same reference data — you only need to specify the paths once.
+
+## Full Features (Version 2-4){.unnumbered}
+
+The full example `.yaml` (`--full`) demonstrates the additional fields available in AlphaFold3 JSON versions 2-4.  Below is a summary of the features available per component type.
+
+### Protein Components
+
+| Field | Version | Description |
+|-------|---------|-------------|
+| `modifications` | 1+ | Post-translational modifications (`ptmType`, `ptmPosition`) |
+| `unpairedMsaPath` | 2+ | Path to unpaired MSA file (A3M format) |
+| `pairedMsaPath` | 2+ | Path to paired MSA file (A3M format) |
+| `templates` | 2+ | Structural templates with `mmcifPath`, `queryIndices`, `templateIndices` |
+| `description` | 4 | Textual annotation for the entity |
+
+### RNA Components
+
+| Field | Version | Description |
+|-------|---------|-------------|
+| `modifications` | 1+ | Base modifications (`modificationType`, `basePosition`) |
+| `unpairedMsaPath` | 2+ | Path to unpaired MSA file |
+| `description` | 4 | Textual annotation for the entity |
+
+### DNA Components
+
+| Field | Version | Description |
+|-------|---------|-------------|
+| `modifications` | 1+ | Base modifications (`modificationType`, `basePosition`) |
+| `description` | 4 | Textual annotation for the entity |
+
+### Ligand and Ion Components
+
+| Field | Version | Description |
+|-------|---------|-------------|
+| `description` | 4 | Textual annotation for the entity |
+
+### Top-Level / Per-Complex Fields
+
+| Field | Version | Description |
+|-------|---------|-------------|
+| `bondedAtomPairs` | 1+ | Covalent bonds between entities (per-complex) |
+| `userCCD` | 1+ | Inline custom chemical component dictionary |
+| `userCCDPath` | 3+ | Path to custom CCD file |
+
+### Example: Complex with Templates and Bonded Atoms
+
+```yaml
+complexes:
+  - name: covalent_complex
+    components:
+      - type: protein
+        file: enzyme.fasta
+        description: Catalytic enzyme
+        templates:
+          - mmcifPath: /templates/enzyme_xtal.cif
+            queryIndices: [0, 1, 2, 3, 4]
+            templateIndices: [0, 1, 2, 3, 4]
+      - type: ligand
+        file: inhibitor.smi
+        description: Covalent inhibitor
+    bondedAtomPairs:
+      - - [A, 1, SG]    # Cysteine sulfur on chain A
+        - [B, 1, C1]    # Carbon on ligand chain B
 ```
